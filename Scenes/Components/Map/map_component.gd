@@ -121,3 +121,16 @@ func _input(_event):
 ## SIGNALS ##
 func _on_player_on_exit_level():
 	map_initialize()
+	
+func move_right_button():
+	player.input_vector.x = 1
+	player.move_player()
+func move_left_button():
+	player.input_vector.x = -1
+	player.move_player()
+func move_up_button():
+	player.input_vector.y = -1
+	player.move_player()
+func move_down_button():
+	player.input_vector.y = 1
+	player.move_player()

@@ -23,18 +23,21 @@ func _physics_process(_delta):
 		input_vector = Vector2.ZERO
 	
 	if input_vector != Vector2.ZERO:
-		var x = tilemap.tile_map.tile_set.tile_size.x
-		var y = tilemap.tile_map.tile_set.tile_size.y
-		var new_pos = global_position + (Vector2(x, y) * input_vector)
+		move_player()
 		
-		var next_cell = tilemap.tile_map.local_to_map(new_pos)
-		var cell_type = get_cell_type(next_cell)
-		if cell_type != '':
-			## Interaction ##
-			if cell_type == 'exit':
-				OnExitLevel.emit()
-			return
-		global_position = new_pos
+func move_player():
+	var x = tilemap.tile_map.tile_set.tile_size.x
+	var y = tilemap.tile_map.tile_set.tile_size.y
+	var new_pos = global_position + (Vector2(x, y) * input_vector)
+	
+	var next_cell = tilemap.tile_map.local_to_map(new_pos)
+	var cell_type = get_cell_type(next_cell)
+	if cell_type != '':
+		## Interaction ##
+		if cell_type == 'exit':
+			OnExitLevel.emit()
+		return
+	global_position = new_pos
 
 func get_cell_type(cell_pos : Vector2i) -> String:
 	var cell_atlas_coord = tilemap.tile_map.get_cell_atlas_coords(0, cell_pos)
