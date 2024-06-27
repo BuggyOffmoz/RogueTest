@@ -5,7 +5,7 @@ class_name MapComponent
 @onready var player : Player = $Player
 
 @export var map_size : Vector2i = Vector2i(7,7)
-@export var enter_exit_distance : int = 6
+@export var start_end_distance : int = 6
 @export var wall_density : int = 14
 
 @export_category("DEBUG")
@@ -29,7 +29,7 @@ func _ready():
 	randomize()
 	create_random_map()
 	
-func _process(delta):
+func _process(_delta):
 	if !map_generated:
 		create_random_map()
 	
@@ -73,7 +73,7 @@ func create_walls():
 func create_in_out():
 	var random_out := Vector2i.ZERO
 	var random_in := Vector2i.ZERO
-	while abs(random_in - random_out) < Vector2i(enter_exit_distance, enter_exit_distance):
+	while abs(random_in - random_out) < Vector2i(start_end_distance, start_end_distance):
 		random_out = get_random_border_cell()
 		random_in = get_random_border_cell()
 	tile_map.set_cell(0, random_out, 0, exit_atlas_coord)

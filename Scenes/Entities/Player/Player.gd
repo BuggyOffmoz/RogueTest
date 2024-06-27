@@ -25,15 +25,18 @@ func _physics_process(_delta):
 		var y = tilemap.tile_map.tile_set.tile_size.y
 		var new_pos = global_position + (Vector2(x, y) * input_vector)
 		
-		var next_cell = tilemap.tile_map.get_cell_atlas_coords(0, tilemap.tile_map.local_to_map(new_pos))
-		#var limit = tilemap.get_limits()
-		if next_cell == Vector2i(-1,-1):
+		var next_cell = tilemap.tile_map.local_to_map(new_pos)
+		if next_cell_detector(next_cell) != '':
+			## Interaction ##
 			return
-		#if new_pos.x >= limit.x or new_pos.y >= limit.y:
-		#	return
-		#elif new_pos.x <= 0 or new_pos.y <= 0:
-		#	return
-		elif tilemap.tile_map.get_cell_atlas_coords(0, tilemap.tile_map.local_to_map(new_pos)) == Vector2i(0,0):
-			return
-		
 		global_position = new_pos
+
+func next_cell_detector(cell_pos : Vector2i) -> String:
+	var cell_atlas_coord = tilemap.tile_map.get_cell_atlas_coords(0, cell_pos)
+	if cell_atlas_coord == Vector2i(-1,-1):
+		return "obstacle"
+	else:
+		if tilemap.tile_map.get_cell_tile_data(0, cell_pos).get_custom_data('type') == 'obstacle':
+			return 'obstacle'
+		else: 
+			return ''
