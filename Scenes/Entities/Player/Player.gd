@@ -1,6 +1,8 @@
 extends Node2D
 class_name Player
 
+signal OnExitLevel
+
 @export var tilemap : MapComponent
 
 var input_vector : Vector2 = Vector2.ZERO
@@ -26,17 +28,18 @@ func _physics_process(_delta):
 		var new_pos = global_position + (Vector2(x, y) * input_vector)
 		
 		var next_cell = tilemap.tile_map.local_to_map(new_pos)
-		if next_cell_detector(next_cell) != '':
+		var cell_type = get_cell_type(next_cell)
+		if cell_type != '':
 			## Interaction ##
+			if cell_type == 'exit':
+				OnExitLevel.emit()
 			return
 		global_position = new_pos
 
-func next_cell_detector(cell_pos : Vector2i) -> String:
+func get_cell_type(cell_pos : Vector2i) -> String:
 	var cell_atlas_coord = tilemap.tile_map.get_cell_atlas_coords(0, cell_pos)
 	if cell_atlas_coord == Vector2i(-1,-1):
 		return "obstacle"
 	else:
-		if tilemap.tile_map.get_cell_tile_data(0, cell_pos).get_custom_data('type') == 'obstacle':
-			return 'obstacle'
-		else: 
-			return ''
+		var tile_type = tilemap.tile_map.get_cell_tile_data(0, cell_pos).get_custom_data('type')
+		return tile_type

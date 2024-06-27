@@ -12,7 +12,9 @@ texture_region_size = Vector2i(64, 64)
 0:0/0/custom_data_0 = "obstacle"
 1:1/0 = 0
 1:0/0 = 0
+1:0/0/custom_data_0 = "exit"
 0:1/0 = 0
+0:1/0/custom_data_0 = "enter"
 2:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_cr1h7"]
@@ -41,3 +43,5 @@ texture = ExtResource("3_41mo0")
 [node name="DebugPath" type="Line2D" parent="."]
 visible = false
 width = 10.22
+
+[connection signal="OnExitLevel" from="Player" to="." method="_on_player_on_exit_level"]

@@ -32,6 +32,12 @@ func _ready():
 func _process(_delta):
 	if !map_generated:
 		create_random_map()
+	else:
+		set_process(false)
+		
+func map_initialize():
+	map_generated = false
+	set_process(true)
 	
 func create_random_map():
 	for x in map_size.x:
@@ -107,5 +113,9 @@ func get_limits() -> Vector2:
 	
 func _input(_event):
 	if Input.is_action_just_pressed("debug_button"):
-		map_generated = false
-		#create_random_map()
+		map_initialize()
+
+
+## SIGNALS ##
+func _on_player_on_exit_level():
+	map_initialize()
