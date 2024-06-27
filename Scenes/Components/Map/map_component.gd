@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 class_name MapComponent
 
 @onready var tile_map : TileMap = $TileMap
@@ -111,9 +111,11 @@ func get_limits() -> Vector2:
 	var size = tile_map.map_to_local(tile_rect.size)
 	return size
 	
+### DEBUG ###
 func _input(_event):
 	if Input.is_action_just_pressed("debug_button"):
 		map_initialize()
+#############
 
 
 ## SIGNALS ##

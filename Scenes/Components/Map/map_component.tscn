@@ -23,9 +23,16 @@ custom_data_layer_0/name = "type"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_pca7b")
 
-[node name="MapComponent" type="Node2D" node_paths=PackedStringArray("line_debug")]
+[node name="MapComponent" type="Node" node_paths=PackedStringArray("line_debug")]
 script = ExtResource("1_gnjh8")
-line_debug = NodePath("DebugPath")
+line_debug = NodePath("DEBUG/DebugPath")
+
+[node name="DEBUG" type="Node" parent="."]
+
+[node name="DebugPath" type="Line2D" parent="DEBUG"]
+visible = false
+z_index = 5
+width = 10.22
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_cr1h7")
@@ -39,9 +46,5 @@ tilemap = NodePath("..")
 [node name="Player" type="Sprite2D" parent="Player"]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_41mo0")
-
-[node name="DebugPath" type="Line2D" parent="."]
-visible = false
-width = 10.22
 
 [connection signal="OnExitLevel" from="Player" to="." method="_on_player_on_exit_level"]
