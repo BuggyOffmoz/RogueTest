@@ -4,6 +4,8 @@ class_name MapComponent
 @onready var tile_map : TileMap = $TileMap
 @onready var player : Player = $Player
 
+@export var level_data : LevelData
+
 @export var map_size : Vector2i = Vector2i(7,7)
 @export var start_end_distance : int = 6
 @export var wall_density : int = 14

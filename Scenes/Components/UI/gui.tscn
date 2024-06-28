@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2l18nrpeldn3"]
+[gd_scene load_steps=4 format=3 uid="uid://b2l18nrpeldn3"]
 
 [ext_resource type="Script" path="res://Scenes/Components/UI/gui.gd" id="1_wfp3q"]
 [ext_resource type="PackedScene" uid="uid://b5rrhnt2x8lwj" path="res://Scenes/Components/Map/map_component.tscn" id="2_fl5ow"]
+[ext_resource type="PackedScene" uid="uid://btehaxuasr64o" path="res://Scenes/Components/Player/player_controller.tscn" id="2_sthq4"]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_wfp3q")
+
+[node name="PlayerController" parent="." node_paths=PackedStringArray("GUI") instance=ExtResource("2_sthq4")]
+GUI = NodePath("..")
 
 [node name="MainContainer" type="Control" parent="."]
 layout_mode = 3
@@ -73,6 +77,7 @@ text = "Inventory "
 layout_mode = 2
 
 [node name="Panel" type="Panel" parent="MainContainer/HBoxContainer/CenterScreen"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(1080, 720)
 layout_mode = 2
 
@@ -157,6 +162,8 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = ">"
 
+[connection signal="pressed" from="MainContainer/HBoxContainer/Character/Accions/Attack" to="PlayerController" method="_on_attack_pressed"]
+[connection signal="pressed" from="MainContainer/HBoxContainer/Character/Accions/Defend" to="PlayerController" method="_on_defend_pressed"]
 [connection signal="pressed" from="MainContainer/HBoxContainer/Map/up_arrow/up" to="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport/MapComponent" method="move_up_button"]
 [connection signal="pressed" from="MainContainer/HBoxContainer/Map/down_arrows/left" to="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport/MapComponent" method="move_left_button"]
 [connection signal="pressed" from="MainContainer/HBoxContainer/Map/down_arrows/down" to="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport/MapComponent" method="move_down_button"]
