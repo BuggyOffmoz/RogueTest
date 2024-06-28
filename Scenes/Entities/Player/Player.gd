@@ -26,6 +26,8 @@ func _physics_process(_delta):
 		move_player()
 		
 func move_player():
+	if GameState.game_state != GameState.MOVE:
+		return
 	var x = tilemap.tile_map.tile_set.tile_size.x
 	var y = tilemap.tile_map.tile_set.tile_size.y
 	var new_pos = global_position + (Vector2(x, y) * input_vector)
@@ -33,11 +35,16 @@ func move_player():
 	var next_cell = tilemap.tile_map.local_to_map(new_pos)
 	var cell_type = get_cell_type(next_cell)
 	if cell_type != '':
-		## Interaction ##
-		if cell_type == 'exit':
-			OnExitLevel.emit()
+		cell_interactions(cell_type)
 		return
 	global_position = new_pos
+	
+func cell_interactions(cell_type : String):
+	## Interaction ##
+	if cell_type == 'exit':
+		OnExitLevel.emit()
+	elif cell_type == 'enemy':
+		GameState.change_state(GameState.COMBAT)
 
 func get_cell_type(cell_pos : Vector2i) -> String:
 	var cell_atlas_coord = tilemap.tile_map.get_cell_atlas_coords(0, cell_pos)

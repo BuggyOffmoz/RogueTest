@@ -155,6 +155,7 @@ func get_limits() -> Vector2:
 ### DEBUG ###
 func _input(_event):
 	if Input.is_action_just_pressed("debug_button"):
+		GameState.change_state(GameState.MOVE)
 		map_initialize()
 #############
 
