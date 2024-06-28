@@ -25,6 +25,8 @@ sources/0 = SubResource("TileSetAtlasSource_pca7b")
 
 [node name="MapComponent" type="Node" node_paths=PackedStringArray("line_debug")]
 script = ExtResource("1_gnjh8")
+wall_density = 10
+max_enemies = 4
 line_debug = NodePath("DEBUG/DebugPath")
 
 [node name="DEBUG" type="Node" parent="."]

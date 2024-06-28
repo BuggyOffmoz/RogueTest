@@ -45,4 +45,6 @@ func get_cell_type(cell_pos : Vector2i) -> String:
 		return "obstacle"
 	else:
 		var tile_type = tilemap.tile_map.get_cell_tile_data(0, cell_pos).get_custom_data('type')
+		if tile_type == "enter":
+			tile_type = ''
 		return tile_type

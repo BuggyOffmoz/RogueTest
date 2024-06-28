@@ -8,14 +8,26 @@ class_name MapComponent
 @export var start_end_distance : int = 6
 @export var wall_density : int = 14
 
+@export_category("Elements")
+@export var max_enemies : int = 7
+@export var min_enemies : int = 2
+## Probabilities ##
+@export var boss_probability : float = 20.0
+@export var treasure_probability : float = 20.0
+@export var max_treasures : int = 3
+@export var min_tresures : int = 0
+######
+
 @export_category("DEBUG")
 @export var line_debug : Line2D
 
+## TILESET ATLAS COORDS ##
 var ground_atlas_coord : Vector2i = Vector2i(1,1)
 var initial_atlas_coord : Vector2i = Vector2i(0,1)
 var exit_atlas_coord : Vector2i = Vector2i(1,0)
 var wall_atlas_coord : Vector2i = Vector2i(0,0)
-var path_atlas_coord : Vector2i = Vector2i(2,1)
+var enemies_atlas_coord : Vector2i = Vector2i(2,1)
+##########################
 
 var layer : int = 0
 
@@ -24,6 +36,11 @@ var exit_position : Vector2 = Vector2.ZERO
 
 var path_finder = Pathfinder.new()
 var map_generated : bool = false
+
+
+func can_spawn_object(probability):
+	var random_value = randi() % 100
+	return random_value < probability
 
 func _ready():
 	randomize()
@@ -49,18 +66,42 @@ func create_random_map():
 	
 	create_in_out()
 	create_walls()
-	create_path()
+	var entities = create_enemies()
+	entities.append(exit_position)
+	for i in entities:
+		map_generated = check_path(initial_position, i)
+		if map_generated == false:
+			break
 	
 	player.global_position = initial_position
 	
-func create_path():
+func create_enemies() -> Array:
+	var enemies_pos = []
+	var used_cells : Array = tile_map.get_used_cells(layer)
+	var cells_availables : Array = []
+	for i in used_cells:
+		var used_coord = tile_map.get_cell_atlas_coords(0, i)
+		if used_coord == ground_atlas_coord:
+			cells_availables.append(i)
+	
+	var enemies : int = randi_range(min_enemies, max_enemies)
+	for enemy in enemies:
+		var idx = randi_range(0, cells_availables.size()-1)
+		tile_map.set_cell(0, cells_availables[idx], 0, enemies_atlas_coord)
+		enemies_pos.append(tile_map.map_to_local(cells_availables[idx]))
+		cells_availables.remove_at(idx)
+	return enemies_pos
+	
+func check_path(from, to) -> bool:
 	var line_path : Array = []
 	path_finder.set_path(tile_map)
-	line_path = path_finder.update_path(tile_map, initial_position, exit_position)
+	line_path = path_finder.update_path(tile_map, from, to)
 	path_finder.create_line(line_debug, line_path)
 	if line_path.size() > 0:
 		#create_random_map()
-		map_generated = true
+		return true
+	else:
+		return false
 
 func create_walls():
 	var used_cells : Array = tile_map.get_used_cells(layer)
