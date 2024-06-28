@@ -1,9 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5rrhnt2x8lwj"]
+[gd_scene load_steps=10 format=3 uid="uid://b5rrhnt2x8lwj"]
 
 [ext_resource type="Texture2D" uid="uid://dre7luqa78f6h" path="res://Assets/2D/Map/Slot.png" id="1_0shtt"]
 [ext_resource type="Script" path="res://Scenes/Components/Map/map_component.gd" id="1_gnjh8"]
+[ext_resource type="Resource" uid="uid://7pojs6x3y2hi" path="res://Resources/Resources/EnemyData/Enemy01.tres" id="2_r28o3"]
 [ext_resource type="Texture2D" uid="uid://b7flnf44fkx4d" path="res://icon.svg" id="3_41mo0"]
+[ext_resource type="Script" path="res://Resources/Resources/LevelData/LevelData.gd" id="3_ccm6i"]
 [ext_resource type="Script" path="res://Scenes/Entities/Player/Player.gd" id="3_lywi7"]
+
+[sub_resource type="Resource" id="Resource_1qtbv"]
+script = ExtResource("3_ccm6i")
+enemies_in_scene = Array[Resource("res://Resources/Resources/EnemyData/EnemyData.gd")]([ExtResource("2_r28o3")])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pca7b"]
 texture = ExtResource("1_0shtt")
@@ -26,6 +32,7 @@ sources/0 = SubResource("TileSetAtlasSource_pca7b")
 
 [node name="MapComponent" type="Node" node_paths=PackedStringArray("line_debug")]
 script = ExtResource("1_gnjh8")
+level_data = SubResource("Resource_1qtbv")
 wall_density = 10
 max_enemies = 4
 line_debug = NodePath("DEBUG/DebugPath")
@@ -42,9 +49,9 @@ tile_set = SubResource("TileSet_cr1h7")
 rendering_quadrant_size = 64
 format = 2
 
-[node name="Player" type="Node2D" parent="." node_paths=PackedStringArray("tilemap")]
+[node name="Player" type="Node2D" parent="." node_paths=PackedStringArray("map_component")]
 script = ExtResource("3_lywi7")
-tilemap = NodePath("..")
+map_component = NodePath("..")
 
 [node name="Player" type="Sprite2D" parent="Player"]
 scale = Vector2(0.2, 0.2)
