@@ -67,7 +67,7 @@ text = "Item II"
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Inventory"
+text = "Inventory "
 
 [node name="CenterScreen" type="VBoxContainer" parent="MainContainer/HBoxContainer"]
 layout_mode = 2
