@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://vo1mtxu8tgqp"]
+
+[ext_resource type="Script" path="res://Scenes/Components/GUI/VisualInventoryItem.gd" id="1_sejke"]
+
+[node name="VisualInventoryItem" type="Control"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1102.0
+offset_bottom = -598.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sejke")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.145266, 0.145266, 0.145266, 0.627451)
+
+[node name="ItemIcon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="ItemAmount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 27.0
+offset_right = 50.0
+offset_bottom = 50.0
+text = "10"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

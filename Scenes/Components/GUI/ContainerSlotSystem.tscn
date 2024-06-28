@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbj3qmrifj67m"]
+
+[ext_resource type="Script" path="res://Scenes/Components/GUI/ContainerSlotSystem.gd" id="1_2glxw"]
+[ext_resource type="Script" path="res://Scenes/Components/GUI/DynamicBoxContainer.gd" id="1_qu8br"]
+
+[node name="ContainerSlotSystem" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_2glxw")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+follow_focus = true
+horizontal_scroll_mode = 3
+
+[node name="DynamicBoxContainer" type="GridContainer" parent="ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+columns = 20
+script = ExtResource("1_qu8br")
+
+[connection signal="resized" from="ScrollContainer" to="ScrollContainer/DynamicBoxContainer" method="_on_scroll_container_resized"]
