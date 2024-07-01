@@ -1,0 +1,170 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2l18nrpeldn3"]
+
+[ext_resource type="Script" path="res://Scenes/Components/UI/gui.gd" id="1_wfp3q"]
+[ext_resource type="PackedScene" uid="uid://b5rrhnt2x8lwj" path="res://Scenes/Components/Map/map_component.tscn" id="2_fl5ow"]
+[ext_resource type="PackedScene" uid="uid://btehaxuasr64o" path="res://Scenes/Components/Player/player_controller.tscn" id="2_sthq4"]
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_wfp3q")
+
+[node name="PlayerController" parent="." node_paths=PackedStringArray("GUI") instance=ExtResource("2_sthq4")]
+GUI = NodePath("..")
+
+[node name="MainContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+offset_left = 50.0
+offset_top = 114.0
+offset_right = 1870.0
+offset_bottom = 966.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Character" type="VBoxContainer" parent="MainContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MainContainer/HBoxContainer/Character"]
+custom_minimum_size = Vector2(0, 480)
+layout_mode = 2
+
+[node name="Accions" type="HBoxContainer" parent="MainContainer/HBoxContainer/Character"]
+layout_mode = 2
+alignment = 1
+
+[node name="Attack" type="Button" parent="MainContainer/HBoxContainer/Character/Accions"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Attack"
+
+[node name="Defend" type="Button" parent="MainContainer/HBoxContainer/Character/Accions"]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Defend"
+
+[node name="Items" type="HBoxContainer" parent="MainContainer/HBoxContainer/Character"]
+layout_mode = 2
+alignment = 1
+
+[node name="Item1" type="Button" parent="MainContainer/HBoxContainer/Character/Items"]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Item I"
+
+[node name="Item2" type="Button" parent="MainContainer/HBoxContainer/Character/Items"]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Item II"
+
+[node name="Inventory" type="Button" parent="MainContainer/HBoxContainer/Character"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Inventory "
+
+[node name="CenterScreen" type="VBoxContainer" parent="MainContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MainContainer/HBoxContainer/CenterScreen"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1080, 720)
+layout_mode = 2
+
+[node name="Message" type="Panel" parent="MainContainer/HBoxContainer/CenterScreen"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainContainer/HBoxContainer/CenterScreen/Message"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = 24.0
+offset_right = -56.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+
+[node name="Map" type="VBoxContainer" parent="MainContainer/HBoxContainer"]
+custom_minimum_size = Vector2(244, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MainContainer/HBoxContainer/Map"]
+custom_minimum_size = Vector2(0, 360)
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MainContainer/HBoxContainer/Map/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 80.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.83, 0.83)
+
+[node name="SubViewport" type="SubViewport" parent="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(448, 448)
+render_target_update_mode = 4
+
+[node name="MapComponent" parent="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport" instance=ExtResource("2_fl5ow")]
+
+[node name="Control" type="Control" parent="MainContainer/HBoxContainer/Map"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+
+[node name="up_arrow" type="HBoxContainer" parent="MainContainer/HBoxContainer/Map"]
+layout_mode = 2
+alignment = 1
+
+[node name="up" type="Button" parent="MainContainer/HBoxContainer/Map/up_arrow"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "^"
+
+[node name="down_arrows" type="HBoxContainer" parent="MainContainer/HBoxContainer/Map"]
+custom_minimum_size = Vector2(244, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="left" type="Button" parent="MainContainer/HBoxContainer/Map/down_arrows"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "<"
+
+[node name="down" type="Button" parent="MainContainer/HBoxContainer/Map/down_arrows"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "v"
+
+[node name="right" type="Button" parent="MainContainer/HBoxContainer/Map/down_arrows"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = ">"
+
+[connection signal="pressed" from="MainContainer/HBoxContainer/Character/Accions/Attack" to="PlayerController" method="_on_attack_pressed"]
+[connection signal="pressed" from="MainContainer/HBoxContainer/Character/Accions/Defend" to="PlayerController" method="_on_defend_pressed"]
+[connection signal="pressed" from="MainContainer/HBoxContainer/Map/up_arrow/up" to="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport/MapComponent" method="move_up_button"]
+[connection signal="pressed" from="MainContainer/HBoxContainer/Map/down_arrows/left" to="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport/MapComponent" method="move_left_button"]
+[connection signal="pressed" from="MainContainer/HBoxContainer/Map/down_arrows/down" to="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport/MapComponent" method="move_down_button"]
+[connection signal="pressed" from="MainContainer/HBoxContainer/Map/down_arrows/right" to="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport/MapComponent" method="move_right_button"]
