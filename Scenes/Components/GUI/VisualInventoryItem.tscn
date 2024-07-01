@@ -12,6 +12,7 @@ offset_right = -1102.0
 offset_bottom = -598.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_sejke")
 
 [node name="ColorRect" type="ColorRect" parent="."]

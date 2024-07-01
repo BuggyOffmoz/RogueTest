@@ -4,21 +4,27 @@ class_name ContainerSlotSystem
 
 # Nodes:
 @onready var dynamic_box_container = %DynamicBoxContainer as GridContainer
+@onready var mouse_container_detector = $MouseContainerDetector as Control
 
 var item_inventory : Array[VisualInventoryItem]
 
 var item_in_movement := false
 var item_picked : VisualInventoryItem
 
-func _ready():
+var mouse_here := false
 
-	for x in 100:
+func _ready():
+	#await get_tree().create_timer(0.1).timeout
+	for x in 10:
 		var n = load("res://Resources/Resources/InventoryResources/AllItems.tres").all_items.pick_random()
 		
 		try_add_item(n,1)
 	
 
-	
+func _input(event):
+	if event.is_action_released("item_normal_action"):
+		verify_other_containers_items_movements()
+
 func try_add_item(_item:InventoryItem,_amount:int):
 	if item_inventory.size() != 0:
 		for item in item_inventory:
@@ -34,7 +40,7 @@ func try_add_item(_item:InventoryItem,_amount:int):
 				# si es consumible, se añadira al slot la cantidad enviada
 				
 				item.item_amount += _amount
-				#item.actualize_inventory_item()
+				item.actualize_inventory_item()
 				
 				
 				return
@@ -67,10 +73,26 @@ func create_new_slot(_item:InventoryItem,_amount:int):
 func try_change_item_positions(_child_index:int):
 	dynamic_box_container.move_child(item_picked,_child_index)
 
-func try_erase_item(_item:InventoryItem,_amount:int):
-	pass
+
+func try_erase_item(_item:InventoryItem,_amount:int,_visual_item: VisualInventoryItem = null):
+	for visual_item:VisualInventoryItem in dynamic_box_container.get_children():
+		if visual_item.internal_item == _item and _visual_item == visual_item:
+			_visual_item.queue_free()
+			item_inventory.erase(_visual_item)
 
 
 func verify_item_amount(_item:InventoryItem,_amount:int):
 	pass
 
+func verify_other_containers_items_movements():
+	if not item_in_movement:
+		for container:ContainerSlotSystem in get_tree().get_nodes_in_group("ContainerGroup"):
+			if container.item_in_movement and container != self and mouse_here:
+				try_add_item(container.item_picked.internal_item,container.item_picked.item_amount)
+				container.try_erase_item(container.item_picked.internal_item,container.item_picked.item_amount,container.item_picked)
+
+func _on_mouse_entered():
+	mouse_here = true
+
+func _on_mouse_exited():
+	mouse_here = false
