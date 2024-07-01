@@ -15,7 +15,7 @@ var mouse_here := false
 
 func _ready():
 	#await get_tree().create_timer(0.1).timeout
-	for x in 10:
+	for x in 50:
 		var n = load("res://Resources/Resources/InventoryResources/AllItems.tres").all_items.pick_random()
 		
 		try_add_item(n,1)
