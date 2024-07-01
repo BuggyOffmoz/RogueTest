@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://lirhc7f4xfac"]
+
+[ext_resource type="PackedScene" uid="uid://cbj3qmrifj67m" path="res://Scenes/Components/GUI/ContainerSlotSystem.tscn" id="1_mob6e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_at8re"]
+bg_color = Color(0.0313726, 0.0313726, 0.0313726, 0.0862745)
+
+[node name="ContainerTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 448.0
+offset_top = 121.0
+offset_right = -376.0
+offset_bottom = -240.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ContainerSlotSystem" parent="HBoxContainer" instance=ExtResource("1_mob6e")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ContainerSlotSystem2" parent="HBoxContainer" instance=ExtResource("1_mob6e")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_at8re")
+
+[node name="NodeForMovingIcons" type="Node2D" parent="." groups=["node_for_icons"]]
