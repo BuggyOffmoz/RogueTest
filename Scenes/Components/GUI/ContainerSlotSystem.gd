@@ -5,6 +5,10 @@ class_name ContainerSlotSystem
 # Nodes:
 @onready var dynamic_box_container = %DynamicBoxContainer as GridContainer
 @onready var mouse_container_detector = $MouseContainerDetector as Control
+var action_manager : ActionsManager
+
+@export var container_name := "Unamed inventory"
+
 
 var item_inventory : Array[VisualInventoryItem]
 
@@ -15,11 +19,13 @@ var mouse_here := false
 
 func _ready():
 	#await get_tree().create_timer(0.1).timeout
+	var item_info = load("res://Resources/Resources/InventoryResources/AllItems.tres") as AllItemInfo
 	for x in 50:
-		var n = load("res://Resources/Resources/InventoryResources/AllItems.tres").all_items.pick_random()
+		var n : InventoryItem = item_info.all_items.pick_random()
 		
 		try_add_item(n,1)
 	
+	%ContainerName.text = container_name
 
 func _input(event):
 	if event.is_action_released("item_normal_action"):

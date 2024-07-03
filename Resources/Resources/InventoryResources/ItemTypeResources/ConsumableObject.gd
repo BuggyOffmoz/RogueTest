@@ -25,15 +25,16 @@ class_name ConsumableObject
 
 
 func _validate_property(property: Dictionary) -> void:
-	if property.name in ["hunger_value"]:
-		if item_type == AllItemInfo.equippable_item_type.SWORD:
-			property.usage = PROPERTY_USAGE_EDITOR
-		else:
-			property.usage = PROPERTY_USAGE_NO_EDITOR
-	
-	if property.name in ["enchanted_value"]:
-		if item_type == AllItemInfo.equippable_item_type.SHIELD:
-			property.usage = PROPERTY_USAGE_EDITOR
-		else:
-			property.usage = PROPERTY_USAGE_NO_EDITOR
+	pass
+	#if property.name in ["hunger_value"]:
+		#if item_type == AllItemInfo.consumable_item_type.FOOD:
+			#property.usage = PROPERTY_USAGE_EDITOR
+		#else:
+			#property.usage = PROPERTY_USAGE_NO_EDITOR
+	#
+	#if property.name in ["enchanted_value"]:
+		#if item_type == AllItemInfo.consumable_item_type.POTIONS:
+			#property.usage = PROPERTY_USAGE_EDITOR
+		#else:
+			#property.usage = PROPERTY_USAGE_NO_EDITOR
 

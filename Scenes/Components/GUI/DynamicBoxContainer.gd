@@ -1,7 +1,7 @@
 @tool
 extends GridContainer
 
-var item_h_size := 50
+var item_h_size := 115
 
 func verify_h_size():
 	

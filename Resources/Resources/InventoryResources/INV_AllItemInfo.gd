@@ -4,8 +4,8 @@ extends Resource
 class_name AllItemInfo
 
 enum equippable_item_type {
-	SWORD,
-	SHIELD
+	WEAPON,
+	DEFEND
 }
 
 enum consumable_item_type {

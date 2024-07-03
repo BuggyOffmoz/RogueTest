@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Components/GUI/VisualInventoryItem.gd" id="1_sejke"]
 
 [node name="VisualInventoryItem" type="Control"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(115, 115)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,11 +35,17 @@ grow_vertical = 2
 expand_mode = 1
 
 [node name="ItemAmount" type="Label" parent="."]
-layout_mode = 0
-offset_left = 31.0
-offset_top = 27.0
-offset_right = 50.0
-offset_bottom = 50.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -9.5
+offset_top = -23.0
+offset_right = 9.5
+grow_horizontal = 2
+grow_vertical = 0
 text = "10"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://biwofbd21tm7x"]
+
+[ext_resource type="Script" path="res://Scenes/Components/GUI/ItemOptionsPopUp.gd" id="1_vqab5"]
+
+[sub_resource type="Theme" id="Theme_an0pb"]
+
+[node name="ItemOptionsPopUp" type="VBoxContainer" node_paths=PackedStringArray("equippable_options", "consumable_options") groups=["OptionPupOp"]]
+offset_right = 101.0
+offset_bottom = 140.0
+theme = SubResource("Theme_an0pb")
+alignment = 1
+script = ExtResource("1_vqab5")
+equippable_options = [NodePath("Equip")]
+consumable_options = [NodePath("Consume")]
+
+[node name="Equip" type="Button" parent="."]
+visible = false
+custom_minimum_size = Vector2(0, 57.195)
+layout_mode = 2
+size_flags_vertical = 6
+text = "Equip"
+
+[node name="Consume" type="Button" parent="."]
+visible = false
+custom_minimum_size = Vector2(0, 57.195)
+layout_mode = 2
+size_flags_vertical = 6
+text = "Consume"
+
+[node name="Trash" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 57.195)
+layout_mode = 2
+size_flags_vertical = 6
+text = "Trash"
+
+[connection signal="pressed" from="Equip" to="." method="_on_equip_pressed"]
+[connection signal="pressed" from="Consume" to="." method="_on_consume_pressed"]
+[connection signal="pressed" from="Trash" to="." method="_on_trash_pressed"]

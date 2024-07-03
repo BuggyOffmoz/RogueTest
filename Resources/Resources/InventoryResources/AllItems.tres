@@ -1,26 +1,48 @@
-[gd_resource type="Resource" script_class="AllItemInfo" load_steps=7 format=3 uid="uid://b0pbro10eh6x3"]
+[gd_resource type="Resource" script_class="AllItemInfo" load_steps=11 format=3 uid="uid://b0pbro10eh6x3"]
 
 [ext_resource type="Script" path="res://Resources/Resources/InventoryResources/INV_Item.gd" id="1_1hghg"]
 [ext_resource type="Texture2D" uid="uid://cgnwx8slscghs" path="res://Assets/2D/Textures/GUI/InventoryItems/Sword.png" id="1_m0lio"]
+[ext_resource type="Script" path="res://Resources/Resources/InventoryResources/ItemTypeResources/EquippableObject.gd" id="1_y5b0x"]
 [ext_resource type="Script" path="res://Resources/Resources/InventoryResources/INV_AllItemInfo.gd" id="2_hybnt"]
 [ext_resource type="Texture2D" uid="uid://c3i0tv00s1eab" path="res://Assets/2D/Textures/GUI/InventoryItems/Bread.png" id="3_meosi"]
+[ext_resource type="Script" path="res://Resources/Resources/InventoryResources/ItemTypeResources/ConsumableObject.gd" id="4_md65b"]
 
-[sub_resource type="Resource" id="Resource_pfprv"]
+[sub_resource type="Resource" id="Resource_hftov"]
+script = ExtResource("1_y5b0x")
+item_type = 0
+item_weight = 0
+item_condition = 100
+base_damage = 2.0
+base_critical_chance = 0
+critical_damage = Vector2(0, 0)
+shield_amount = 0
+
+[sub_resource type="Resource" id="Resource_s5apk"]
 script = ExtResource("1_1hghg")
-item_id = "BASIC_SWORD"
+item_id = "BASE_SWORD"
 item_icon = ExtResource("1_m0lio")
 equippable = true
 consumable = false
-accessible = false
+accessible = true
+e_item_type = SubResource("Resource_hftov")
 
-[sub_resource type="Resource" id="Resource_v5t08"]
+[sub_resource type="Resource" id="Resource_qu4r0"]
+script = ExtResource("4_md65b")
+item_type = 0
+life_recovery = 3
+shield_recovery = 0
+hunger_value = 0
+enchanted_value = 0
+
+[sub_resource type="Resource" id="Resource_douqj"]
 script = ExtResource("1_1hghg")
-item_id = "HARD_BREA"
+item_id = "OLD_BREAD"
 item_icon = ExtResource("3_meosi")
 equippable = false
 consumable = true
-accessible = false
+accessible = true
+c_item_type = SubResource("Resource_qu4r0")
 
 [resource]
 script = ExtResource("2_hybnt")
-all_items = Array[ExtResource("1_1hghg")]([SubResource("Resource_pfprv"), SubResource("Resource_v5t08")])
+all_items = Array[ExtResource("1_1hghg")]([SubResource("Resource_s5apk"), SubResource("Resource_douqj")])

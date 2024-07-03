@@ -39,15 +39,16 @@ class_name InventoryItem
 @export var c_item_type : ConsumableObject
 
 func _validate_property(property: Dictionary) -> void:
-	if property.name in ["e_item_type"]:
-		if equippable:
-			property.usage = PROPERTY_USAGE_EDITOR
-		else:
-			property.usage = PROPERTY_USAGE_NO_EDITOR
-	if property.name in ["c_item_type"]:
-		if consumable:
-			property.usage = PROPERTY_USAGE_EDITOR
-		else:
-			property.usage = PROPERTY_USAGE_NO_EDITOR
+	pass
+	#if property.name in ["e_item_type"]:
+		#if equippable:
+			#property.usage = PROPERTY_USAGE_EDITOR
+		#else:
+			#property.usage = PROPERTY_USAGE_NO_EDITOR
+	#if property.name in ["c_item_type"]:
+		#if consumable:
+			#property.usage = PROPERTY_USAGE_EDITOR
+		#else:
+			#property.usage = PROPERTY_USAGE_NO_EDITOR
 
 

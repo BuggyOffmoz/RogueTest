@@ -3,7 +3,7 @@ extends Node
 signal ChangeState(state)
 signal StartCombat(enemies)
 
-enum{MOVE, COMBAT}
+enum {MOVE, COMBAT}
 var game_state : int = MOVE
 
 func change_state(state : int):
