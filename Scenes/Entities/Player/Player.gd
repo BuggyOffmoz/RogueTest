@@ -13,12 +13,16 @@ func _ready():
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("ui_right"):
 		input_vector.x = 1
+		input_vector.y = 0
 	elif Input.is_action_just_pressed("ui_left"):
 		input_vector.x = -1
+		input_vector.y = 0
 	elif Input.is_action_just_pressed("ui_up"):
 		input_vector.y = -1
+		input_vector.x = 0
 	elif Input.is_action_just_pressed("ui_down"):
 		input_vector.y = 1
+		input_vector.x = 0
 	else:
 		input_vector = Vector2.ZERO
 	
