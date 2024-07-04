@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://de7ncqc1qbp3w"]
+
+[ext_resource type="Script" path="res://Scenes/Components/Player/CombatSystem.gd" id="1_choj8"]
+
+[node name="CombatSystem" type="Node"]
+script = ExtResource("1_choj8")
+
+[node name="DefendTime" type="Timer" parent="."]
+
+[connection signal="timeout" from="DefendTime" to="." method="_on_defend_time_timeout"]

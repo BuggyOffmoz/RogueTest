@@ -2,10 +2,13 @@ extends Node
 
 class_name ActionsManager
 
+const default_weapon = preload("res://Resources/Resources/InventoryResources/DefaultWeapon.tres")
+
 ### Nodes
 @export var GUI : CanvasLayer
 @export var base_container : ContainerSlotSystem
 @export var actions_buttons : Array[Button]
+@export var combat_system : CombatSystem
 
 @export_category("Action manager config")
 
@@ -17,6 +20,7 @@ class_name ActionsManager
 @export var visual_second_item : Control
 
 var actions_management_items = {
+	"default_item" : default_weapon,
 	"attack_item" : null,
 	"defend_item" : null,
 	"first_item" : null,
@@ -53,15 +57,22 @@ func attack_item():
 	if GameState.game_state == GameState.COMBAT:
 		#print(actions_management_items["attack_item"] != null)
 		if actions_management_items["attack_item"] != null:
-			
 			var _item : InventoryItem = actions_management_items["attack_item"]
-			GUI.enemy_screen.get_node("EnemyBase").on_hurt(_item.e_item_type.base_damage)
+			combat_system.player_attack(_item)
+		else:
+			var _item : InventoryItem = actions_management_items['default_item']
+			combat_system.player_attack(_item)
 	else:
 		return
 
 func defend_item():
 	if GameState.game_state == GameState.COMBAT:
-		pass
+		if actions_management_items["defend_item"] != null:
+			var _item : InventoryItem = actions_management_items["defend_item"]
+			combat_system.player_defend(_item)
+		#else:
+		#	var _item : InventoryItem = actions_management_items['default_item']
+		#	combat_system.player_attack(_item)
 	else:
 		return
 

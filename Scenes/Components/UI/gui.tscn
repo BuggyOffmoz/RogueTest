@@ -1,27 +1,55 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2l18nrpeldn3"]
+[gd_scene load_steps=14 format=3 uid="uid://b2l18nrpeldn3"]
 
 [ext_resource type="Script" path="res://Scenes/Components/UI/gui.gd" id="1_wfp3q"]
 [ext_resource type="PackedScene" uid="uid://b5rrhnt2x8lwj" path="res://Scenes/Components/Map/map_component.tscn" id="2_fl5ow"]
 [ext_resource type="PackedScene" uid="uid://btehaxuasr64o" path="res://Scenes/Components/Player/player_controller.tscn" id="2_sthq4"]
 [ext_resource type="PackedScene" uid="uid://cbj3qmrifj67m" path="res://Scenes/Components/GUI/ContainerSlotSystem.tscn" id="3_2smch"]
+[ext_resource type="Script" path="res://Resources/Resources/PlayerStat.gd" id="3_6lrrk"]
 [ext_resource type="PackedScene" uid="uid://lirhc7f4xfac" path="res://Scenes/Components/GUI/ContainerManager.tscn" id="3_hclcr"]
 [ext_resource type="PackedScene" uid="uid://banaa7o8d5u1e" path="res://Scenes/Components/Player/ActionsManager.tscn" id="3_l6i8x"]
+[ext_resource type="PackedScene" uid="uid://de7ncqc1qbp3w" path="res://Scenes/Components/Player/CombatSystem.tscn" id="5_oqc18"]
+[ext_resource type="Texture2D" uid="uid://yl7a48bxwxp2" path="res://Assets/2D/Weapons/Defend/Shield.png" id="6_3q7i8"]
 [ext_resource type="PackedScene" uid="uid://biwofbd21tm7x" path="res://Scenes/Components/GUI/ItemOptionsPopUp.tscn" id="7_uj55t"]
+
+[sub_resource type="Resource" id="Resource_12smc"]
+script = ExtResource("3_6lrrk")
+player_name = "Unknown"
+player_description = ""
+base_health = 100
+base_defend_value = 0
+energy_time = 0.5
+
+[sub_resource type="Gradient" id="Gradient_o84h5"]
+colors = PackedColorArray(0.180392, 0.180392, 0.180392, 1, 0.180392, 0.180392, 0.180392, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1n0nb"]
+gradient = SubResource("Gradient_o84h5")
+width = 1024
+height = 1024
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_wfp3q")
 
 [node name="PlayerController" parent="." node_paths=PackedStringArray("GUI") instance=ExtResource("2_sthq4")]
 GUI = NodePath("..")
+player_stats = SubResource("Resource_12smc")
 
-[node name="ActionsManager" parent="PlayerController" node_paths=PackedStringArray("GUI", "base_container", "actions_buttons", "visual_attack_slot", "visual_defend_slot", "visual_first_item", "visual_second_item") instance=ExtResource("3_l6i8x")]
+[node name="ActionsManager" parent="PlayerController" node_paths=PackedStringArray("GUI", "base_container", "actions_buttons", "combat_system", "visual_attack_slot", "visual_defend_slot", "visual_first_item", "visual_second_item") instance=ExtResource("3_l6i8x")]
 GUI = NodePath("../..")
 base_container = NodePath("../../MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger/Vertically/MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#ContainerSlotSystem")
 actions_buttons = [NodePath("../../MainContainer/HBoxContainer/Character/Accions/Attack"), NodePath("../../MainContainer/HBoxContainer/Character/Accions/Defend"), NodePath("../../MainContainer/HBoxContainer/Character/Items/First"), NodePath("../../MainContainer/HBoxContainer/Character/Items/Second")]
+combat_system = NodePath("../CombatSystem")
 visual_attack_slot = NodePath("../../MainContainer/HBoxContainer/Character/Accions/Attack")
 visual_defend_slot = NodePath("../../MainContainer/HBoxContainer/Character/Accions/Defend")
 visual_first_item = NodePath("../../MainContainer/HBoxContainer/Character/Items/First")
 visual_second_item = NodePath("../../MainContainer/HBoxContainer/Character/Items/Second")
+
+[node name="CombatSystem" parent="PlayerController" node_paths=PackedStringArray("GUI", "energy_bar", "health_bar", "defend_bar", "player_controller") instance=ExtResource("5_oqc18")]
+GUI = NodePath("../..")
+energy_bar = NodePath("../../MainContainer/HBoxContainer/Character/Energy")
+health_bar = NodePath("../../MainContainer/HBoxContainer/Character/Health")
+defend_bar = NodePath("../../MainContainer/DefendBar")
+player_controller = NodePath("..")
 
 [node name="MainContainer" type="Control" parent="."]
 layout_mode = 3
@@ -48,6 +76,15 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 480)
 layout_mode = 2
 
+[node name="Health" type="ProgressBar" parent="MainContainer/HBoxContainer/Character"]
+modulate = Color(0.964706, 0, 0.25098, 1)
+layout_mode = 2
+value = 100.0
+
+[node name="Energy" type="ProgressBar" parent="MainContainer/HBoxContainer/Character"]
+modulate = Color(0.854902, 0.67451, 0, 1)
+layout_mode = 2
+
 [node name="Accions" type="HBoxContainer" parent="MainContainer/HBoxContainer/Character"]
 layout_mode = 2
 alignment = 1
@@ -55,6 +92,7 @@ alignment = 1
 [node name="Attack" type="Button" parent="MainContainer/HBoxContainer/Character/Accions"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 32
 text = "Attack"
 
@@ -77,6 +115,7 @@ expand_mode = 1
 [node name="Defend" type="Button" parent="MainContainer/HBoxContainer/Character/Accions"]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 32
 text = "Defend"
 
@@ -103,18 +142,21 @@ alignment = 1
 [node name="First" type="Button" parent="MainContainer/HBoxContainer/Character/Items"]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 32
 text = "Item I"
 
 [node name="Second" type="Button" parent="MainContainer/HBoxContainer/Character/Items"]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 32
 text = "Item II"
 
 [node name="Inventory" type="Button" parent="MainContainer/HBoxContainer/Character"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 32
 text = "Inventory "
 
@@ -143,18 +185,20 @@ container_name = "Player Inventory"
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainContainer/HBoxContainer/CenterScreen/Message"]
+[node name="GameDes" type="RichTextLabel" parent="MainContainer/HBoxContainer/CenterScreen/Message"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 56.0
-offset_top = 24.0
-offset_right = -56.0
-offset_bottom = -29.0
+offset_left = 28.0
+offset_top = 15.0
+offset_right = -40.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/normal_font_size = 24
+scroll_following = true
 
 [node name="Map" type="VBoxContainer" parent="MainContainer/HBoxContainer"]
 custom_minimum_size = Vector2(244, 0)
@@ -228,12 +272,56 @@ offset_top = 378.0
 offset_right = 1175.0
 offset_bottom = 611.0
 
-[connection signal="pressed" from="MainContainer/HBoxContainer/Character/Accions/Attack" to="PlayerController" method="_on_attack_pressed"]
-[connection signal="pressed" from="MainContainer/HBoxContainer/Character/Accions/Defend" to="PlayerController" method="_on_defend_pressed"]
+[node name="DefendBar" type="TextureProgressBar" parent="MainContainer"]
+layout_mode = 0
+offset_left = 441.0
+offset_top = 580.0
+offset_right = 1465.0
+offset_bottom = 1604.0
+scale = Vector2(0.2, 0.2)
+value = 100.0
+fill_mode = 2
+texture_under = ExtResource("6_3q7i8")
+texture_progress = SubResource("GradientTexture2D_1n0nb")
+
+[node name="GameOverScreen" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -189.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen/CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="GameOverScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 92
+text = "Game Over"
+
+[node name="Button" type="Button" parent="GameOverScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Restart"
+
 [connection signal="pressed" from="MainContainer/HBoxContainer/Character/Inventory" to="." method="_on_inventory_pressed"]
 [connection signal="pressed" from="MainContainer/HBoxContainer/Map/up_arrow/up" to="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport/MapComponent" method="move_up_button"]
 [connection signal="pressed" from="MainContainer/HBoxContainer/Map/down_arrows/left" to="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport/MapComponent" method="move_left_button"]
 [connection signal="pressed" from="MainContainer/HBoxContainer/Map/down_arrows/down" to="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport/MapComponent" method="move_down_button"]
 [connection signal="pressed" from="MainContainer/HBoxContainer/Map/down_arrows/right" to="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport/MapComponent" method="move_right_button"]
+[connection signal="pressed" from="GameOverScreen/CenterContainer/VBoxContainer/Button" to="PlayerController" method="_on_button_pressed"]
 
 [editable path="MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger"]
