@@ -19,6 +19,7 @@ class_name EquipableObject
 # SWORD CONFIGURATIONS
 @export_range(0,100,1) var base_damage := 0.0
 @export_range(0,100,1) var base_critical_chance := 0
+@export var energy_time : float = 0.5
 
 
 @export var critical_damage := Vector2(0,0)
@@ -26,6 +27,8 @@ class_name EquipableObject
 @export_subgroup("Equippable Item specs")
 # SHIELD CONFIGURATIONS
 @export_range(0,100,1) var shield_amount = 0
+@export var shield_time : float = 0.3
+@export var shield_cooldown : float = 1.0
 
 
 func _validate_property(property: Dictionary) -> void:
