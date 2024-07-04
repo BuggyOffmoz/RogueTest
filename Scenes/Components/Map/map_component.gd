@@ -20,6 +20,9 @@ class_name MapComponent
 @export var min_tresures : int = 0
 ######
 
+@export_category("Environment")
+@export var fog : Node2D
+
 @export_category("DEBUG")
 @export var line_debug : Line2D
 
@@ -53,6 +56,7 @@ func _process(_delta):
 		create_random_map()
 	else:
 		set_process(false)
+		fog.initialize_fog()
 		
 func map_initialize():
 	map_generated = false
