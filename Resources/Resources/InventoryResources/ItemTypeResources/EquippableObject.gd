@@ -15,35 +15,35 @@ class_name EquipableObject
 
 @export_range(0,100,1) var item_condition := 100
 
-@export_subgroup("Item specs")
+@export_subgroup("Weapons Item specs")
 # SWORD CONFIGURATIONS
-@export_range(0,100,1) var base_damage := 0
-@export_range(0,100,1) var base_critical_chance := 0:
-	set(value):
-		base_critical_chance = value
-		notify_property_list_changed()
+@export_range(0,100,1) var base_damage := 0.0
+@export_range(0,100,1) var base_critical_chance := 0
+
 
 @export var critical_damage := Vector2(0,0)
 
+@export_subgroup("Equippable Item specs")
 # SHIELD CONFIGURATIONS
 @export_range(0,100,1) var shield_amount = 0
 
 
 func _validate_property(property: Dictionary) -> void:
-	if property.name in ["base_damage","base_critical_chance"]:
-		if item_type == AllItemInfo.equippable_item_type.SWORD:
-			property.usage = PROPERTY_USAGE_EDITOR
-		else:
-			property.usage = PROPERTY_USAGE_NO_EDITOR
-	
-	if property.name in ["shield_amount"]:
-		if item_type == AllItemInfo.equippable_item_type.SHIELD:
-			property.usage = PROPERTY_USAGE_EDITOR
-		else:
-			property.usage = PROPERTY_USAGE_NO_EDITOR
-	
-	if property.name in ["critical_damage"]:
-		if base_critical_chance != 0 and item_type == AllItemInfo.equippable_item_type.SWORD:
-			property.usage = PROPERTY_USAGE_EDITOR
-		else:
-			property.usage = PROPERTY_USAGE_NO_EDITOR
+	pass
+	#if property.name in ["base_damage","base_critical_chance"]:
+		#if item_type == AllItemInfo.equippable_item_type.WEAPON:
+			#property.usage = PROPERTY_USAGE_EDITOR
+		#else:
+			#property.usage = PROPERTY_USAGE_NO_EDITOR
+	#
+	#if property.name in ["shield_amount"]:
+		#if item_type == AllItemInfo.equippable_item_type.DEFEND:
+			#property.usage = PROPERTY_USAGE_EDITOR
+		#else:
+			#property.usage = PROPERTY_USAGE_NO_EDITOR
+	#
+	#if property.name in ["critical_damage"]:
+		#if base_critical_chance != 0 and item_type == AllItemInfo.equippable_item_type.WEAPON:
+			#property.usage = PROPERTY_USAGE_EDITOR
+		#else:
+			#property.usage = PROPERTY_USAGE_NO_EDITOR

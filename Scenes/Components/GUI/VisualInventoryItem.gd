@@ -27,8 +27,15 @@ func _process(delta):
 func actualize_inventory_item():
 	if internal_item and visual_item_amount:
 		item_icon.texture = internal_item.item_icon
+		if item_amount > 1:
+			visual_item_amount.set_deferred("text",str(item_amount))
+			visual_item_amount.visible = true
 		
-		visual_item_amount.set_deferred("text",str(item_amount))
+		else:
+			visual_item_amount.visible = false
+		
+		if item_amount <= 0:
+			inventory.try_erase_item(internal_item,1,self)
 
 func create_image_move_item():
 	var new_image = Sprite2D.new()
@@ -44,7 +51,13 @@ func erase_image_move_item():
 
 func _on_gui_input(event:InputEvent):
 	if event.is_action_pressed("item_open_options") and not picked:
-		pass
+		if inventory.action_manager != null:
+			if get_tree().get_nodes_in_group("OptionPupOp") != null:
+				var option_popup = get_tree().get_nodes_in_group("OptionPupOp")[0] as ItemOptionsPopUp
+				option_popup.item_selection = self
+				option_popup.container = inventory
+				option_popup.show_popup()
+			#inventory.action_manager.equipe_item(internal_item)
 	
 	if event.is_action_pressed("item_normal_action") and not picked:
 		inventory.item_in_movement = true

@@ -5,8 +5,11 @@ const ENEMY = preload("res://Scenes/Entities/Enemies/enemy_base.tscn")
 ## Main Screen ##
 @onready var enemy_screen : Panel = %Panel
 @onready var message_label : Label = $MainContainer/HBoxContainer/CenterScreen/Message/Label
+@onready var container_manger = %ContainerManger as ContainerManager
+
 
 func _ready():
+	
 	GameState.connect("ChangeState", state_changed)
 	GameState.connect("StartCombat", start_combat)
 	
@@ -23,3 +26,10 @@ func state_changed(state : int):
 			message_label.text = "..."
 		GameState.COMBAT:
 			message_label.text = "In Battle"
+
+
+
+
+
+func _on_inventory_pressed():
+	container_manger.show_container()
