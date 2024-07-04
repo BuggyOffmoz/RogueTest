@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtow6ji8ii8gq"]
+
+[ext_resource type="Script" path="res://Scenes/Components/Map/Fog.gd" id="1_kwboj"]
+[ext_resource type="Texture2D" uid="uid://ww2pcihmj286" path="res://Assets/2D/Map/FogLight.png" id="2_qt52v"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0ww8o"]
+blend_mode = 3
+
+[node name="FogComponent" type="Node2D" node_paths=PackedStringArray("fog")]
+script = ExtResource("1_kwboj")
+fog = NodePath("Sprite2D")
+fogWidth = 480
+fogHeight = 480
+LightTexture = ExtResource("2_qt52v")
+lightWidth = 192
+lightHeight = 192
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_0ww8o")
+centered = false
