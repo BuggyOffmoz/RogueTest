@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AllItemInfo" load_steps=11 format=3 uid="uid://b0pbro10eh6x3"]
+[gd_resource type="Resource" script_class="AllItemInfo" load_steps=14 format=3 uid="uid://b0pbro10eh6x3"]
 
 [ext_resource type="Script" path="res://Resources/Resources/InventoryResources/INV_Item.gd" id="1_1hghg"]
 [ext_resource type="Texture2D" uid="uid://cgnwx8slscghs" path="res://Assets/2D/Textures/GUI/InventoryItems/Sword.png" id="1_m0lio"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Resources/Resources/InventoryResources/INV_AllItemInfo.gd" id="2_hybnt"]
 [ext_resource type="Texture2D" uid="uid://c3i0tv00s1eab" path="res://Assets/2D/Textures/GUI/InventoryItems/Bread.png" id="3_meosi"]
 [ext_resource type="Script" path="res://Resources/Resources/InventoryResources/ItemTypeResources/ConsumableObject.gd" id="4_md65b"]
+[ext_resource type="Texture2D" uid="uid://j2cx8rfstow2" path="res://Assets/2D/Textures/GUI/InventoryItems/Shield.png" id="6_s7j2t"]
 
 [sub_resource type="Resource" id="Resource_hftov"]
 script = ExtResource("1_y5b0x")
@@ -43,6 +44,25 @@ consumable = true
 accessible = true
 c_item_type = SubResource("Resource_qu4r0")
 
+[sub_resource type="Resource" id="Resource_g6ney"]
+script = ExtResource("1_y5b0x")
+item_type = 1
+item_weight = 1
+item_condition = 100
+base_damage = 0.0
+base_critical_chance = 0
+critical_damage = Vector2(0, 0)
+shield_amount = 6
+
+[sub_resource type="Resource" id="Resource_qskrx"]
+script = ExtResource("1_1hghg")
+item_id = "BASE_SHIELD"
+item_icon = ExtResource("6_s7j2t")
+equippable = true
+consumable = false
+accessible = false
+e_item_type = SubResource("Resource_g6ney")
+
 [resource]
 script = ExtResource("2_hybnt")
-all_items = Array[ExtResource("1_1hghg")]([SubResource("Resource_s5apk"), SubResource("Resource_douqj")])
+all_items = Array[ExtResource("1_1hghg")]([SubResource("Resource_s5apk"), SubResource("Resource_douqj"), SubResource("Resource_qskrx")])

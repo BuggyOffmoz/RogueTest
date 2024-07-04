@@ -80,6 +80,22 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Defend"
 
+[node name="ItemIcon" type="TextureRect" parent="MainContainer/HBoxContainer/Character/Accions/Defend"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+
 [node name="Items" type="HBoxContainer" parent="MainContainer/HBoxContainer/Character"]
 layout_mode = 2
 alignment = 1
@@ -122,13 +138,6 @@ layout_mode = 2
 [node name="MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#ContainerSlotSystem" parent="MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger/Vertically" index="1" instance=ExtResource("3_2smch")]
 layout_mode = 2
 container_name = "Player Inventory"
-
-[node name="MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#VSeparator" type="VSeparator" parent="MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger/Vertically" index="2"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-
-[node name="MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#ContainerSlotSystem2" parent="MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger/Vertically" index="3" instance=ExtResource("3_2smch")]
-layout_mode = 2
 
 [node name="Message" type="Panel" parent="MainContainer/HBoxContainer/CenterScreen"]
 custom_minimum_size = Vector2(0, 180)

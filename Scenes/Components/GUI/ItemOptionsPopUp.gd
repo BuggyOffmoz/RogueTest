@@ -12,9 +12,10 @@ var in_forge := false
 var item_selection : VisualInventoryItem
 var container : ContainerSlotSystem
 
-#func _input(event):
-	#if event.is_action_pressed("item_normal_action") and visible:
-		#visible = false
+func _input(event):
+	if event.is_action_pressed("item_normal_action") and visible and verify_input():
+		visible = false
+	
 func _process(delta):
 	if visible:
 		verify_item_existence()
@@ -46,6 +47,15 @@ func verify_item_existence():
 		item_selection = null
 		container = null
 
+func verify_input():
+	for button:Button in get_children():
+		if button.is_hovered():
+			return(false)
+	
+	print("AAAAAAAA")
+	return(true)
+	
+
 #=======================================SEÑALES
 func _on_equip_pressed():
 	if container.action_manager != null:
@@ -60,3 +70,6 @@ func _on_consume_pressed():
 
 func _on_trash_pressed():
 	container.try_erase_item(item_selection.internal_item,item_selection.item_amount,item_selection)
+
+
+

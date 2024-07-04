@@ -5,6 +5,7 @@
 [sub_resource type="Theme" id="Theme_an0pb"]
 
 [node name="ItemOptionsPopUp" type="VBoxContainer" node_paths=PackedStringArray("equippable_options", "consumable_options") groups=["OptionPupOp"]]
+z_as_relative = false
 offset_right = 101.0
 offset_bottom = 140.0
 theme = SubResource("Theme_an0pb")
@@ -15,6 +16,7 @@ consumable_options = [NodePath("Consume")]
 
 [node name="Equip" type="Button" parent="."]
 visible = false
+show_behind_parent = true
 custom_minimum_size = Vector2(0, 57.195)
 layout_mode = 2
 size_flags_vertical = 6
@@ -22,12 +24,14 @@ text = "Equip"
 
 [node name="Consume" type="Button" parent="."]
 visible = false
+show_behind_parent = true
 custom_minimum_size = Vector2(0, 57.195)
 layout_mode = 2
 size_flags_vertical = 6
 text = "Consume"
 
 [node name="Trash" type="Button" parent="."]
+show_behind_parent = true
 custom_minimum_size = Vector2(0, 57.195)
 layout_mode = 2
 size_flags_vertical = 6
