@@ -70,9 +70,10 @@ func defend_item():
 		if actions_management_items["defend_item"] != null:
 			var _item : InventoryItem = actions_management_items["defend_item"]
 			combat_system.player_defend(_item)
-		#else:
-		#	var _item : InventoryItem = actions_management_items['default_item']
-		#	combat_system.player_attack(_item)
+		else:
+			#GUI.message_label.text += '\nNo Shield Equipped!'
+			var _item : InventoryItem = actions_management_items['default_item']
+			combat_system.player_defend(_item)
 	else:
 		return
 
