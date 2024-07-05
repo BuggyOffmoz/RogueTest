@@ -13,8 +13,8 @@ base_critical_chance = 0
 energy_time = 0.5
 critical_damage = Vector2(0, 0)
 shield_amount = 0
-shield_time = null
-shield_cooldown = null
+shield_time = 0.3
+shield_cooldown = 1.0
 
 [resource]
 script = ExtResource("2_74amq")
