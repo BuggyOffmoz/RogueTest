@@ -9,7 +9,7 @@ signal EnemyDefeated(enemy)
 
 signal PlayerDead
 
-enum {MOVE, COMBAT}
+enum {MOVE, COMBAT, GAMEOVER}
 var game_state : int = MOVE
 
 func restart_game():
@@ -30,6 +30,7 @@ func enemy_attack(enemy_data : EnemyData): ## Probablemenbte en un futuro tenga 
 	EnemyOnAttack.emit(enemy_data)
 	
 func player_dead():
+	game_state = GAMEOVER
 	PlayerDead.emit()
 	
 func combat_finished():

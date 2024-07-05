@@ -34,3 +34,4 @@ func game_over():
 
 func _on_inventory_pressed():
 	container_manger.show_container()
+	get_tree().paused = container_manger.visible
