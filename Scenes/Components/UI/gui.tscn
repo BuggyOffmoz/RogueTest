@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2l18nrpeldn3"]
+[gd_scene load_steps=9 format=3 uid="uid://b2l18nrpeldn3"]
 
 [ext_resource type="Script" path="res://Scenes/Components/UI/gui.gd" id="1_wfp3q"]
 [ext_resource type="PackedScene" uid="uid://b5rrhnt2x8lwj" path="res://Scenes/Components/Map/map_component.tscn" id="2_fl5ow"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cbj3qmrifj67m" path="res://Scenes/Components/GUI/ContainerSlotSystem.tscn" id="3_2smch"]
 [ext_resource type="PackedScene" uid="uid://lirhc7f4xfac" path="res://Scenes/Components/GUI/ContainerManager.tscn" id="3_hclcr"]
 [ext_resource type="PackedScene" uid="uid://banaa7o8d5u1e" path="res://Scenes/Components/Player/ActionsManager.tscn" id="3_l6i8x"]
+[ext_resource type="PackedScene" uid="uid://bfe3elaat32ry" path="res://Scenes/Components/GUI/ContainerGui/VisualContainerManager.tscn" id="6_hnoq3"]
 [ext_resource type="PackedScene" uid="uid://biwofbd21tm7x" path="res://Scenes/Components/GUI/ItemOptionsPopUp.tscn" id="7_uj55t"]
 
 [node name="GUI" type="CanvasLayer"]
@@ -138,6 +139,13 @@ layout_mode = 2
 [node name="MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#ContainerSlotSystem" parent="MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger/Vertically" index="1" instance=ExtResource("3_2smch")]
 layout_mode = 2
 container_name = "Player Inventory"
+
+[node name="MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#VSeparator3" type="VSeparator" parent="MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger/Vertically" index="2"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="VisualContainerManager" parent="MainContainer/HBoxContainer/CenterScreen/Panel" instance=ExtResource("6_hnoq3")]
+layout_mode = 1
 
 [node name="Message" type="Panel" parent="MainContainer/HBoxContainer/CenterScreen"]
 custom_minimum_size = Vector2(0, 180)

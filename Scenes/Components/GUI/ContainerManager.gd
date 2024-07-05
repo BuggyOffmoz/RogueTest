@@ -14,7 +14,11 @@ var actual_containers : Array[ContainerSlotSystem]
 
 func add_container(_new_container:ContainerSlotSystem):
 	actual_containers.append(_new_container)
-	order_system.add_child(_new_container)
+	
+	_new_container.container_manager = self
+	
+	if not visible:
+		order_system.add_child(_new_container)
 
 func hind_container():
 	pass
@@ -24,3 +28,5 @@ func show_container():
 		pass
 	else:
 		visible = !visible 
+		for container in actual_containers:
+			container.actualize_show_all_inventory()
