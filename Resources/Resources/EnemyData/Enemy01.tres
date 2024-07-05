@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://7pojs6x3y2hi"]
 
-[ext_resource type="Texture2D" uid="uid://doujk7m8yxcqe" path="res://Assets/2D/Enemies/01/E01.png" id="1_drck6"]
+[ext_resource type="Texture2D" uid="uid://cl8l6qgtyushx" path="res://Assets/2D/Enemies/01/puppet_sketch.png" id="1_7w4c2"]
 [ext_resource type="Script" path="res://Resources/Resources/EnemyData/EnemyData.gd" id="1_qtmm7"]
 
 [resource]
 script = ExtResource("1_qtmm7")
 enemy_name = "Mi Nombre"
 enemy_description = "Mi descripción"
-screen_texture = ExtResource("1_drck6")
+screen_texture = ExtResource("1_7w4c2")
 health = 100.0
 attack_damage = 20.0
+attack_time_range = Vector2(2, 5)

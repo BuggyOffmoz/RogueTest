@@ -26,8 +26,8 @@ func start_combat(enemies : Array[EnemyData]):
 	ChangeState.emit(COMBAT)
 	StartCombat.emit(enemies)
 	
-func enemy_attack(damage : int): ## Probablemenbte en un futuro tenga que ser un Item Class
-	EnemyOnAttack.emit(damage)
+func enemy_attack(enemy_data : EnemyData): ## Probablemenbte en un futuro tenga que ser un Item Class
+	EnemyOnAttack.emit(enemy_data)
 	
 func player_dead():
 	PlayerDead.emit()
