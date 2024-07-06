@@ -18,8 +18,8 @@ base_critical_chance = 0
 energy_time = 2.0
 critical_damage = Vector2(0, 0)
 shield_amount = 0
-shield_time = null
-shield_cooldown = null
+shield_time = 0.3
+shield_cooldown = 1.0
 
 [sub_resource type="Resource" id="Resource_s5apk"]
 script = ExtResource("1_1hghg")
@@ -33,7 +33,7 @@ e_item_type = SubResource("Resource_hftov")
 [sub_resource type="Resource" id="Resource_qu4r0"]
 script = ExtResource("4_md65b")
 item_type = 0
-life_recovery = 3
+life_recovery = 30
 shield_recovery = 0
 hunger_value = 0
 enchanted_value = 0
@@ -58,7 +58,7 @@ energy_time = 0.5
 critical_damage = Vector2(0, 0)
 shield_amount = 50
 shield_time = 1.0
-shield_cooldown = null
+shield_cooldown = 1.0
 
 [sub_resource type="Resource" id="Resource_qskrx"]
 script = ExtResource("1_1hghg")
