@@ -12,7 +12,13 @@
 
 [sub_resource type="Resource" id="Resource_1qtbv"]
 script = ExtResource("3_ccm6i")
+
+enemies_in_scene = Array[Resource("res://Resources/Resources/EnemyData/EnemyData.gd")]([ExtResource("2_r28o3")])
+
+containers_in_scene = {}
+
 enemies_type = Array[Resource("res://Resources/Resources/EnemyData/EnemyData.gd")]([ExtResource("2_r28o3")])
+
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pca7b"]
 texture = ExtResource("1_0shtt")

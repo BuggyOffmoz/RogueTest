@@ -5,10 +5,11 @@ class_name ContainerSlotSystem
 # Nodes:
 @onready var dynamic_box_container = %DynamicBoxContainer as GridContainer
 @onready var mouse_container_detector = $MouseContainerDetector as Control
+@export var container_manager : ContainerManager
 var action_manager : ActionsManager
 
 @export var container_name := "Unamed inventory"
-
+var container_icon : Texture2D
 
 var item_inventory : Array[VisualInventoryItem]
 
@@ -18,13 +19,6 @@ var item_picked : VisualInventoryItem
 var mouse_here := false
 
 func _ready():
-	#await get_tree().create_timer(0.1).timeout
-	var item_info = load("res://Resources/Resources/InventoryResources/AllItems.tres") as AllItemInfo
-	for x in 50:
-		var n : InventoryItem = item_info.all_items.pick_random()
-		
-		try_add_item(n,1)
-	
 	%ContainerName.text = container_name
 
 func _input(event):
@@ -46,7 +40,9 @@ func try_add_item(_item:InventoryItem,_amount:int):
 				# si es consumible, se añadira al slot la cantidad enviada
 				
 				item.item_amount += _amount
-				item.actualize_inventory_item()
+				
+				if container_manager.visible:
+					item.actualize_inventory_item()
 				
 				
 				return
@@ -55,8 +51,17 @@ func try_add_item(_item:InventoryItem,_amount:int):
 		
 		create_new_slot(_item,_amount)
 	else:
-		
+		print("ASDJ")
 		create_new_slot(_item,_amount)
+
+func actualize_show_all_inventory():
+	for visual_slot: VisualInventoryItem in item_inventory:
+		dynamic_box_container.call_deferred("add_child",visual_slot)
+		
+
+func erase_all_visual_item():
+	for visual_slot: VisualInventoryItem in item_inventory:
+		visual_slot.queue_free()
 
 func create_new_slot(_item:InventoryItem,_amount:int):
 	
@@ -69,11 +74,13 @@ func create_new_slot(_item:InventoryItem,_amount:int):
 	new_visual_slot.item_amount = _amount
 	
 	item_inventory.append(new_visual_slot)
-	dynamic_box_container.call_deferred("add_child",new_visual_slot)
+	# TO FIX volver a des-comentar
+	if container_manager != null and container_manager.visible:
+		dynamic_box_container.call_deferred("add_child",new_visual_slot)
 	
 	
-	dynamic_box_container.queue_redraw()
-	queue_redraw()
+	#dynamic_box_container.queue_redraw()
+	#queue_redraw()
 	#dynamic_box_container.verify_h_size()
 
 func try_change_item_positions(_child_index:int):
