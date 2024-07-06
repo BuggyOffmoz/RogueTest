@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=4 format=3 uid="uid://c4d2buys36nwk"]
+
+[ext_resource type="Script" path="res://Resources/Resources/InventoryResources/ItemTypeResources/EquippableObject.gd" id="1_u5mm5"]
+[ext_resource type="Script" path="res://Resources/Resources/InventoryResources/INV_Item.gd" id="2_8p3mv"]
+
+[sub_resource type="Resource" id="Resource_tdh4u"]
+script = ExtResource("1_u5mm5")
+item_type = 1
+item_weight = 0
+item_condition = 100
+base_damage = 0.0
+base_critical_chance = 0
+energy_time = 0.5
+critical_damage = Vector2(0, 0)
+shield_amount = 10
+shield_time = 0.3
+shield_cooldown = 1.0
+
+[resource]
+script = ExtResource("2_8p3mv")
+item_id = "HANDS_SHIELD"
+equippable = true
+consumable = false
+accessible = false
+e_item_type = SubResource("Resource_tdh4u")

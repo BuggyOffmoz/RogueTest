@@ -4,6 +4,7 @@ class_name Player
 signal OnExitLevel
 
 @export var map_component : MapComponent
+@export var cell_detector : CellDetector
 
 var input_vector : Vector2 = Vector2.ZERO
 
@@ -39,9 +40,13 @@ func move_player():
 	var next_cell = map_component.tile_map.local_to_map(new_pos)
 	var cell_type = get_cell_type(next_cell)
 	if cell_type != '':
-		cell_interactions(cell_type)
+		if cell_type == 'obstacle':
+			return
+		cell_detector.cell_interactions(cell_type)
+		global_position = new_pos
 		return
 	global_position = new_pos
+
 	visual_container_notificate()
 
 
@@ -62,6 +67,7 @@ func cell_interactions(cell_type : String):
 func get_enemies_in_cell() -> Array[EnemyData]:
 	var enemies = map_component.level_data.enemies_in_scene ### En un futuro hay que crear una función que eliga una cantidad a leatoria de enemigos.
 	return enemies
+
 
 func get_cell_type(cell_pos : Vector2i) -> String:
 	var cell_atlas_coord = map_component.tile_map.get_cell_atlas_coords(0, cell_pos)

@@ -2,6 +2,8 @@ extends Resource
 
 class_name LevelData
 
+@export var enemies_type : Array[EnemyData]
+
 @export var enemies_in_scene : Array[EnemyData]
 
 @export var containers_in_scene : Dictionary
@@ -37,4 +39,3 @@ func verify_containers_in_room(_player_position:Vector2i) -> bool:
 		return(true)
 	else:
 		return(false)
-	

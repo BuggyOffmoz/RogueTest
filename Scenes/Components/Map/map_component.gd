@@ -49,6 +49,7 @@ func can_spawn_object(probability):
 	return random_value < probability
 
 func _ready():
+	GameState.connect('CombatFinished', combat_finished)
 	randomize()
 	create_random_map()
 	
@@ -160,10 +161,10 @@ func get_limits() -> Vector2:
 	return size
 	
 ### DEBUG ###
-func _input(_event):
-	if Input.is_action_just_pressed("debug_button"):
-		GameState.change_state(GameState.MOVE)
-		map_initialize()
+#func _input(_event):
+	#if Input.is_action_just_pressed("debug_button"):
+		#GameState.change_state(GameState.MOVE)
+		#map_initialize()
 #############
 
 
@@ -183,3 +184,8 @@ func move_up_button():
 func move_down_button():
 	player.input_vector.y = 1
 	player.move_player()
+
+func combat_finished():
+	#var cells = tile_map.get_used_cells(0)
+	var enemy_cell = tile_map.local_to_map(player.position)
+	tile_map.set_cell(0, enemy_cell, 0, ground_atlas_coord)

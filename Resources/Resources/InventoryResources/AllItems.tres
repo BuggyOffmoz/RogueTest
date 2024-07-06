@@ -13,10 +13,13 @@ script = ExtResource("1_y5b0x")
 item_type = 0
 item_weight = 0
 item_condition = 100
-base_damage = 2.0
+base_damage = 20.0
 base_critical_chance = 0
+energy_time = 2.0
 critical_damage = Vector2(0, 0)
 shield_amount = 0
+shield_time = null
+shield_cooldown = null
 
 [sub_resource type="Resource" id="Resource_s5apk"]
 script = ExtResource("1_1hghg")
@@ -51,8 +54,11 @@ item_weight = 1
 item_condition = 100
 base_damage = 0.0
 base_critical_chance = 0
+energy_time = 0.5
 critical_damage = Vector2(0, 0)
-shield_amount = 6
+shield_amount = 50
+shield_time = 1.0
+shield_cooldown = null
 
 [sub_resource type="Resource" id="Resource_qskrx"]
 script = ExtResource("1_1hghg")
