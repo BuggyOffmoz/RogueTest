@@ -94,6 +94,8 @@ func enemy_defeated(enemy : EnemyData) -> void:
 	enemies_in_scene.erase(enemy)
 	if enemies_in_scene == []:
 		combat_finished()
+		attack_indicator.attack_stopped()
+		player_on_defend = false
 	
 func combat_finished() -> void:
 	GameState.combat_finished()

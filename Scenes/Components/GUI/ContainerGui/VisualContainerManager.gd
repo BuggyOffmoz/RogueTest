@@ -2,6 +2,7 @@ extends Control
 
 class_name VisualContainerManager
 
+@export var GUI : CanvasLayer
 @export var container_manager : ContainerManager
 @export var map_component : MapComponent
 
@@ -49,6 +50,11 @@ func create_new_container_button(_container:ContainerSlotSystem):
 func insert_container_in_center_gui_panel(new_container:ContainerSlotSystem):
 	if not container_manager.visible:
 		container_manager.show_container()
+		
+		### PAUSAR EL JUEGO AL ABRIR EL CONTAINER ###
+		GUI.change_to_inventory_state()
+		############################################
+		
 	container_manager.add_container(new_container)
 
 	container_manager.update_item_in_containers()

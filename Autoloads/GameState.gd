@@ -9,8 +9,9 @@ signal EnemyDefeated(enemy)
 
 signal PlayerDead
 
-enum {MOVE, COMBAT}
+enum {MOVE, COMBAT, INVENTORY, GAMEOVER}
 var game_state : int = MOVE
+var previous_state : int = MOVE
 
 func restart_game():
 	var path = get_tree().current_scene.scene_file_path
