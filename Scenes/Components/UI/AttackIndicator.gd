@@ -26,11 +26,14 @@ func start_attack() -> void:
 	tween.tween_callback(attack_finished)
 	
 func attack_finished() -> void:
+	attack_stopped()
+	AttackFinished.emit()
+	
+func attack_stopped():
 	if tween:
 		tween.kill()
 	indicator.position.x = 0.0
 	visible = false
-	AttackFinished.emit()
 	
 func get_defend_action() -> bool:
 	if indicator_area.get_overlapping_areas() != []:

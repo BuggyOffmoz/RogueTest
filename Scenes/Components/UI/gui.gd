@@ -34,3 +34,13 @@ func game_over():
 
 func _on_inventory_pressed():
 	container_manger.show_container()
+	change_to_inventory_state()
+
+func change_to_inventory_state():
+	if container_manger.visible:
+		GameState.previous_state = GameState.game_state
+		GameState.change_state(GameState.INVENTORY)
+		get_tree().paused = true
+	else:
+		GameState.change_state(GameState.previous_state)
+		get_tree().paused = false
