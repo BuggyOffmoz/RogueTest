@@ -1,6 +1,8 @@
 extends Node
 class_name MapComponent
 
+signal MapGenerated
+
 @onready var tile_map : TileMap = $TileMap
 @onready var player : Player = $Player
 @export var visual_container : VisualContainerManager
@@ -59,6 +61,7 @@ func _process(_delta):
 	else:
 		set_process(false)
 		fog.initialize_fog()
+		MapGenerated.emit()
 		
 func map_initialize():
 	map_generated = false
@@ -159,6 +162,14 @@ func get_limits() -> Vector2:
 	var tile_rect = tile_map.get_used_rect()
 	var size = tile_map.map_to_local(tile_rect.size)
 	return size
+	
+func get_empty_cells() -> Array[Vector2]:
+	var arr : Array[Vector2] = []
+	var cells = tile_map.get_used_cells(0)
+	for i in cells:
+		if tile_map.get_cell_tile_data(0,i).get_custom_data('type') != 'obstacle':
+			arr.append(tile_map.map_to_local(i))
+	return arr
 	
 ### DEBUG ###
 #func _input(_event):

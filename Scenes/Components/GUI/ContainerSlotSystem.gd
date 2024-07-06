@@ -51,16 +51,19 @@ func try_add_item(_item:InventoryItem,_amount:int):
 		
 		create_new_slot(_item,_amount)
 	else:
-		print("ASDJ")
+		#print("")
 		create_new_slot(_item,_amount)
 
 func actualize_show_all_inventory():
 	for visual_slot: VisualInventoryItem in item_inventory:
+		if dynamic_box_container.get_children().has(visual_slot):
+			return
 		dynamic_box_container.call_deferred("add_child",visual_slot)
 		
 
 func erase_all_visual_item():
 	for visual_slot: VisualInventoryItem in item_inventory:
+		#print(name + ": Erase Items")
 		visual_slot.queue_free()
 
 func create_new_slot(_item:InventoryItem,_amount:int):

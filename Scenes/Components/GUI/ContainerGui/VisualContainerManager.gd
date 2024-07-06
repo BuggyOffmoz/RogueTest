@@ -13,15 +13,15 @@ func _ready():
 	base_configurations()
 
 
-func verify_containers_in_room():
-	if map_component.level_data.verify_containers_in_room(map_component.player.global_position):
-		var containers_in_room : Array = map_component.level_data.get_containers_in_room(map_component.player.global_position)
-		for container in containers_in_room:
-			
-			create_new_container_button(container)
-	else:
-		reset_buttons()
-	container_manager.clear_containers()
+#func verify_containers_in_room():
+	#if map_component.level_data.verify_containers_in_room(map_component.player.global_position):
+		#var containers_in_room : Array = map_component.level_data.get_containers_in_room(map_component.player.global_position)
+		#for container in containers_in_room:
+		#	
+		#	create_new_container_button(container)
+	#else:
+	#	reset_buttons()
+	#container_manager.clear_containers()
 
 func base_configurations():
 	pass
@@ -37,31 +37,23 @@ func reset_buttons():
 		
 
 
-func create_new_container_button(_container:ContainerSlotSystem):
-	
-	var new_button = %SampleButton.duplicate() as Button
-	
-	new_button.connect("pressed",insert_container_in_center_gui_panel.bind(_container))
-	new_button.visible = true
-	
-	%ButtonContent.add_child(new_button)
+#func create_new_container_button(_container:ContainerSlotSystem):
+	#
+	#var new_button = %SampleButton.duplicate() as Button
+	#
+	#new_button.connect("pressed",insert_container_in_center_gui_panel.bind(_container))
+	#new_button.visible = true
+	#
+	#%ButtonContent.add_child(new_button)
 
 
-func insert_container_in_center_gui_panel(new_container:ContainerSlotSystem):
-	if not container_manager.visible:
-		container_manager.show_container()
-		
-		### PAUSAR EL JUEGO AL ABRIR EL CONTAINER ###
-		GUI.change_to_inventory_state()
-		############################################
-		
-	container_manager.add_container(new_container)
-
-	container_manager.update_item_in_containers()
-	#get_tree().get_nodes_in_group("ContainerManager")[0].add_container(new_container)
-
-
-
+func insert_container_in_center_gui_panel():
+	var player_pos = map_component.player.global_position
+	var new_container : Array = \
+	map_component.level_data.get_containers_in_room(player_pos)
+	if new_container != []:
+		container_manager.add_container(new_container[0])
+		container_manager.update_item_in_containers()
 
 func _on_ground_container_pressed():
 	pass # Replace with function body.

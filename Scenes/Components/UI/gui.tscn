@@ -42,11 +42,13 @@ script = ExtResource("1_wfp3q")
 GUI = NodePath("..")
 player_stats = SubResource("Resource_12smc")
 
-[node name="ActionsManager" parent="PlayerController" node_paths=PackedStringArray("GUI", "base_container", "actions_buttons", "combat_system", "visual_attack_slot", "visual_defend_slot", "visual_first_item", "visual_second_item") instance=ExtResource("3_l6i8x")]
+[node name="ActionsManager" parent="PlayerController" node_paths=PackedStringArray("GUI", "base_container", "actions_buttons", "combat_system", "container_manger", "visual_container", "visual_attack_slot", "visual_defend_slot", "visual_first_item", "visual_second_item") instance=ExtResource("3_l6i8x")]
 GUI = NodePath("../..")
 base_container = NodePath("../../MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger/Vertically/MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#ContainerSlotSystem")
 actions_buttons = [NodePath("../../MainContainer/HBoxContainer/Character/Accions/Attack"), NodePath("../../MainContainer/HBoxContainer/Character/Accions/Defend"), NodePath("../../MainContainer/HBoxContainer/Character/Items/First"), NodePath("../../MainContainer/HBoxContainer/Character/Items/Second")]
 combat_system = NodePath("../CombatSystem")
+container_manger = NodePath("../../MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger")
+visual_container = NodePath("../../MainContainer/HBoxContainer/CenterScreen/Panel/VisualContainerManager")
 visual_attack_slot = NodePath("../../MainContainer/HBoxContainer/Character/Accions/Attack")
 visual_defend_slot = NodePath("../../MainContainer/HBoxContainer/Character/Accions/Defend")
 visual_first_item = NodePath("../../MainContainer/HBoxContainer/Character/Items/First")
@@ -419,7 +421,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Restart"
 
-[connection signal="pressed" from="MainContainer/HBoxContainer/Character/Inventory" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="MainContainer/HBoxContainer/Character/Inventory" to="PlayerController/ActionsManager" method="_on_inventory_pressed"]
 [connection signal="pressed" from="MainContainer/HBoxContainer/Map/up_arrow/up" to="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport/MapComponent" method="move_up_button"]
 [connection signal="pressed" from="MainContainer/HBoxContainer/Map/down_arrows/left" to="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport/MapComponent" method="move_left_button"]
 [connection signal="pressed" from="MainContainer/HBoxContainer/Map/down_arrows/down" to="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport/MapComponent" method="move_down_button"]
