@@ -31,7 +31,8 @@ func add_container_to_room(_container:ContainerSlotSystem,_player_position:Vecto
 
 func get_containers_in_room(_player_position:Vector2i) -> Array:
 	return(containers_in_scene.get(_player_position))
-	
+#func get_container_in_room(_player_position:Vector2i) -> Array:
+#		return containers_in_scene.get(_player_position)
 
 func verify_containers_in_room(_player_position:Vector2i) -> bool:
 	

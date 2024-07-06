@@ -10,6 +10,10 @@ const default_weapon = preload("res://Resources/Resources/InventoryResources/Wea
 @export var actions_buttons : Array[Button]
 @export var combat_system : CombatSystem
 
+@export_category("Inventory")
+@export var container_manger : ContainerManager
+@export var visual_container : VisualContainerManager
+
 @export_category("Action manager config")
 
 ### Nodos especificados
@@ -97,9 +101,29 @@ func consume_particular_item(_item:VisualInventoryItem):
 	#print('Item Consume')
 		
 
+func _on_inventory_pressed():
+	container_manger.show_container()
+	if container_manger.visible:
+		visual_container.insert_container_in_center_gui_panel()
+	else:
+		container_manger.clear_containers()
+	change_to_inventory_state()
+
+func change_to_inventory_state():
+	if container_manger.visible:
+		GameState.previous_state = GameState.game_state
+		GameState.change_state(GameState.INVENTORY)
+		get_tree().paused = true
+	else:
+		GameState.change_state(GameState.previous_state)
+		get_tree().paused = false
+
 
 ### Señales
 
 func button_action(_button_name:StringName):
 	if has_method(_button_name.to_lower()+"_item"):
 		call(_button_name.to_lower()+"_item")
+
+
+
