@@ -14,6 +14,7 @@ var enemies_in_scene : Array[EnemyData] = []
 
 var energy_tween : Tween
 var health : float = 100.0 : set = set_health, get = get_health
+var max_health : float = 100.0
 
 ## Playeree Defense ##
 var player_on_defend : bool = false
@@ -28,6 +29,7 @@ func _ready():
 	attack_indicator.connect('AttackFinished', enemy_attack)
 	energy_bar.value = energy_bar.max_value
 	health = player_controller.player_stats.base_health
+	max_health = health
 	health_bar.max_value = health
 	
 func start_combat(_enemies : Array[EnemyData]) -> void:
@@ -44,19 +46,12 @@ func reset_tween(time: float) -> void:
 func player_attack(_item : InventoryItem) -> void:
 	var damage = _item.e_item_type.base_damage
 	if energy_bar.value < energy_bar.max_value:
-		damage = damage / 4
+		damage = damage / 5
 	reset_tween(_item.e_item_type.energy_time)
 	GUI.enemy_screen.get_node("EnemyBase").on_hurt(damage)
 	#GUI.message_label.text += '\nPlayer Damage: ' + str(damage)
 	
 func player_defend(_item : InventoryItem):
-	#if player_on_defend:
-	#	return
-	#player_on_defend = true
-	#defend_bar.value = 0.0
-	#var tween = create_tween()
-	#tween.tween_property(defend_bar, 'value', 100.0, _item.e_item_type.shield_time)
-	#tween.tween_callback(_on_defend_time_timeout)
 	if player_on_indicator:
 		player_shield_amount = _item.e_item_type.shield_amount
 		if attack_indicator.get_defend_action():
@@ -67,10 +62,6 @@ func player_defend(_item : InventoryItem):
 			attack_indicator.attack_finished()
 	else:
 		return
-	
-#func _on_defend_time_timeout():
-	#player_on_defend = false
-	#defend_bar.value = 100.0
 	
 func enemy_start_attack(enemy_data : EnemyData):
 	player_on_indicator = true
@@ -100,6 +91,9 @@ func enemy_defeated(enemy : EnemyData) -> void:
 func combat_finished() -> void:
 	GameState.combat_finished()
 	GUI.message_label.text += '\nCombat Finished'
+	
+func player_item_consume(item : VisualInventoryItem):
+	health += item.internal_item.c_item_type.life_recovery
 
 func set_health(value):
 	if value <= 0:
@@ -107,6 +101,9 @@ func set_health(value):
 		GameState.player_dead()
 	else:
 		health = value
+		
+	if value > max_health:
+		value = max_health 
 		
 	health_bar.value = value
 	

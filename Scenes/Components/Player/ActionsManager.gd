@@ -2,7 +2,7 @@ extends Node
 
 class_name ActionsManager
 
-const default_weapon = preload("res://Resources/Resources/InventoryResources/DefaultWeapon.tres")
+const default_weapon = preload("res://Resources/Resources/InventoryResources/Weapons/DefaultWeapon.tres")
 
 ### Nodes
 @export var GUI : CanvasLayer
@@ -93,6 +93,8 @@ func consume_particular_item(_item:VisualInventoryItem):
 		_item.actualize_inventory_item()
 	
 	#GUI.enemy_screen.get_node("EnemyBase").on_hurt(_item.e_item_type.base_damage)
+		combat_system.player_item_consume(_item)
+	#print('Item Consume')
 		
 
 
