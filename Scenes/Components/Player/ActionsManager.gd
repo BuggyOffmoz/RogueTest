@@ -13,6 +13,7 @@ const default_weapon = preload("res://Resources/Resources/InventoryResources/Wea
 @export_category("Inventory")
 @export var container_manger : ContainerManager
 @export var visual_container : VisualContainerManager
+#@export var main_inventory: ContainerSlotSystem
 
 @export_category("Action manager config")
 
@@ -100,7 +101,9 @@ func consume_particular_item(_item:VisualInventoryItem):
 		combat_system.player_item_consume(_item)
 	#print('Item Consume')
 		
-
+		
+		
+### INVENTORY ###
 func _on_inventory_pressed():
 	container_manger.show_container()
 	if container_manger.visible:
@@ -118,6 +121,11 @@ func change_to_inventory_state():
 		GameState.change_state(GameState.previous_state)
 		get_tree().paused = false
 
+## INVENTORY ##
+#func _input(event):
+	#if event.is_action_released("item_normal_action"):
+		#pass
+		#main_inventory.verify_other_containers_items_movements()
 
 ### Señales
 

@@ -16,6 +16,7 @@ var actual_containers : Array[ContainerSlotSystem]
 
 func _ready():
 	map_component.connect('MapGenerated', initialize_container)
+	GameState.connect('EnemyDefeated', create_container_from_enemy)
 	
 func initialize_container():
 	create_empty_containers()
@@ -23,9 +24,23 @@ func initialize_container():
 func create_empty_containers():
 	for i in map_component.get_empty_cells():
 		var new_container = SLOT.instantiate()
-		new_container.container_name = 'empty container'
+		new_container.container_name = 'Floor'
+		
+		#add_random_items(new_container)
+		
 		map_component.level_data.add_container_to_room(new_container,i)
 		
+func add_random_items(new_container):
+	var alt = load("res://Resources/Resources/InventoryResources/AllItems.tres")
+	var _items_inside = [alt.all_items.pick_random()]
+	for item:InventoryItem in _items_inside:
+		if item as InventoryItem:
+			var amount := 1
+			if (_items_inside.find(item) + 1) is int:
+				amount = _items_inside.find(item) + 1
+			new_container.try_add_item(item,amount)
+			
+	return new_container
 
 func add_container(_new_container:ContainerSlotSystem):
 	actual_containers.clear() ## Limpiar containers para volver a mostrar solo 1
@@ -39,23 +54,13 @@ func add_container(_new_container:ContainerSlotSystem):
 
 func create_container_from_enemy(_enemy:EnemyData):
 	var alt = load("res://Resources/Resources/InventoryResources/AllItems.tres")
-	create_specific_container_in_room("Enemy B",[alt.all_items.pick_random()])
+	create_specific_container_in_room([alt.all_items.pick_random()])
 
-func create_specific_container_in_room(_name_container:String,_items_inside:Array[InventoryItem]):
-	var new_container = SLOT.instantiate()
-	
-	new_container.container_name = _name_container
-	
-	for item:InventoryItem in _items_inside:
-		if item as InventoryItem:
-			var amount := 1
-			if (_items_inside.find(item) + 1) is int:
-				amount = _items_inside.find(item) + 1
-			
-			new_container.try_add_item(item,amount)
-	
-	map_component.level_data.add_container_to_room(new_container,map_component.player.global_position)
-	
+func create_specific_container_in_room(_items_inside:Array[InventoryItem]):
+	#var new_container = SLOT.instantiate()
+	#new_container.container_name = _name_container
+	map_component.level_data.add_items_to_cell(_items_inside, \
+	map_component.player.global_position)
 
 func update_item_in_containers():
 	for container in actual_containers:

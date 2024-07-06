@@ -8,6 +8,6 @@ func _ready():
 	player_stats = PlayerStats.new() ## Este player  stats  deberia  crearse en algun  creador de personaje o algo similar.
 	
 
-
+## GAME OVER SCREEN ##
 func _on_button_pressed():
 	GameState.restart_game()

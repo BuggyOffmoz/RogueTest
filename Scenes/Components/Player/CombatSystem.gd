@@ -4,7 +4,6 @@ class_name CombatSystem
 @export var GUI : CanvasLayer
 @export var energy_bar : ProgressBar
 @export var health_bar : ProgressBar
-@export var defend_bar : TextureProgressBar
 @export var player_controller : PlayerController
 @export var attack_indicator : AttackIndicator
 

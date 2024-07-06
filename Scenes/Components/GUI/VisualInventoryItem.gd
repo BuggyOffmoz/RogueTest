@@ -58,7 +58,7 @@ func _on_gui_input(event:InputEvent):
 				option_popup.container = inventory
 				option_popup.show_popup()
 			#inventory.action_manager.equipe_item(internal_item)
-	
+
 	if event.is_action_pressed("item_normal_action") and not picked:
 		inventory.item_in_movement = true
 		inventory.item_picked = self
