@@ -4,6 +4,7 @@ class_name CombatSystem
 @export var GUI : CanvasLayer
 @export var energy_bar : ProgressBar
 @export var health_bar : ProgressBar
+@export var defend_bar : TextureProgressBar
 @export var player_controller : PlayerController
 @export var attack_indicator : AttackIndicator
 
@@ -93,7 +94,6 @@ func enemy_defeated(enemy : EnemyData) -> void:
 	enemies_in_scene.erase(enemy)
 	if enemies_in_scene == []:
 		combat_finished()
-		attack_indicator.attack_finished()
 	
 func combat_finished() -> void:
 	GameState.combat_finished()

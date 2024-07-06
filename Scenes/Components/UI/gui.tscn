@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b2l18nrpeldn3"]
+[gd_scene load_steps=17 format=3 uid="uid://b2l18nrpeldn3"]
 
 [ext_resource type="Script" path="res://Scenes/Components/UI/gui.gd" id="1_wfp3q"]
 [ext_resource type="PackedScene" uid="uid://b5rrhnt2x8lwj" path="res://Scenes/Components/Map/map_component.tscn" id="2_fl5ow"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://lirhc7f4xfac" path="res://Scenes/Components/GUI/ContainerManager.tscn" id="3_hclcr"]
 [ext_resource type="PackedScene" uid="uid://banaa7o8d5u1e" path="res://Scenes/Components/Player/ActionsManager.tscn" id="3_l6i8x"]
 [ext_resource type="PackedScene" uid="uid://de7ncqc1qbp3w" path="res://Scenes/Components/Player/CombatSystem.tscn" id="5_oqc18"]
+[ext_resource type="Texture2D" uid="uid://yl7a48bxwxp2" path="res://Assets/2D/Weapons/Defend/Shield.png" id="6_3q7i8"]
 [ext_resource type="PackedScene" uid="uid://biwofbd21tm7x" path="res://Scenes/Components/GUI/ItemOptionsPopUp.tscn" id="7_uj55t"]
 [ext_resource type="Script" path="res://Scenes/Components/UI/AttackIndicator.gd" id="8_t4h4j"]
 
@@ -24,6 +25,14 @@ size = Vector2(47, 62)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fo58v"]
 size = Vector2(74, 62)
+
+[sub_resource type="Gradient" id="Gradient_o84h5"]
+colors = PackedColorArray(0.180392, 0.180392, 0.180392, 1, 0.180392, 0.180392, 0.180392, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1n0nb"]
+gradient = SubResource("Gradient_o84h5")
+width = 1024
+height = 1024
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_wfp3q")
@@ -42,10 +51,11 @@ visual_defend_slot = NodePath("../../MainContainer/HBoxContainer/Character/Accio
 visual_first_item = NodePath("../../MainContainer/HBoxContainer/Character/Items/First")
 visual_second_item = NodePath("../../MainContainer/HBoxContainer/Character/Items/Second")
 
-[node name="CombatSystem" parent="PlayerController" node_paths=PackedStringArray("GUI", "energy_bar", "health_bar", "player_controller", "attack_indicator") instance=ExtResource("5_oqc18")]
+[node name="CombatSystem" parent="PlayerController" node_paths=PackedStringArray("GUI", "energy_bar", "health_bar", "defend_bar", "player_controller", "attack_indicator") instance=ExtResource("5_oqc18")]
 GUI = NodePath("../..")
 energy_bar = NodePath("../../MainContainer/HBoxContainer/Character/Energy")
 health_bar = NodePath("../../MainContainer/HBoxContainer/Character/Health")
+defend_bar = NodePath("../../MainContainer/DefendBar")
 player_controller = NodePath("..")
 attack_indicator = NodePath("../../MainContainer/HBoxContainer/CenterScreen/Panel/AttackIndicator")
 
@@ -68,7 +78,6 @@ grow_vertical = 2
 alignment = 1
 
 [node name="Character" type="VBoxContainer" parent="MainContainer/HBoxContainer"]
-process_mode = 3
 custom_minimum_size = Vector2(364, 914)
 layout_mode = 2
 
@@ -170,9 +179,7 @@ layout_mode = 2
 
 [node name="ContainerManger" parent="MainContainer/HBoxContainer/CenterScreen/Panel" instance=ExtResource("3_hclcr")]
 unique_name_in_owner = true
-process_mode = 3
 visible = false
-z_index = 1
 layout_mode = 1
 
 [node name="MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#VSeparator2" type="VSeparator" parent="MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger/Vertically" index="0"]
@@ -319,14 +326,24 @@ theme_override_font_sizes/font_size = 48
 text = ">"
 
 [node name="ItemOptionsPopUp" parent="MainContainer" instance=ExtResource("7_uj55t")]
-process_mode = 3
 visible = false
-z_index = 1
 layout_mode = 0
 offset_left = 1007.0
 offset_top = 378.0
 offset_right = 1175.0
 offset_bottom = 611.0
+
+[node name="DefendBar" type="TextureProgressBar" parent="MainContainer"]
+layout_mode = 0
+offset_left = 441.0
+offset_top = 580.0
+offset_right = 1465.0
+offset_bottom = 1604.0
+scale = Vector2(0.2, 0.2)
+value = 100.0
+fill_mode = 2
+texture_under = ExtResource("6_3q7i8")
+texture_progress = SubResource("GradientTexture2D_1n0nb")
 
 [node name="GameOverScreen" type="Control" parent="."]
 unique_name_in_owner = true

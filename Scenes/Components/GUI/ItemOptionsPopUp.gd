@@ -52,7 +52,7 @@ func verify_input():
 		if button.is_hovered():
 			return(false)
 	
-	#print("AAAAAAAA")
+	print("AAAAAAAA")
 	return(true)
 	
 
