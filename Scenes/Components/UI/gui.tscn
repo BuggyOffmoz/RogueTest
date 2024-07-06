@@ -127,25 +127,30 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(1080, 720)
 layout_mode = 2
 
-[node name="ContainerManger" parent="MainContainer/HBoxContainer/CenterScreen/Panel" instance=ExtResource("3_hclcr")]
+[node name="ContainerManger" parent="MainContainer/HBoxContainer/CenterScreen/Panel" node_paths=PackedStringArray("player_container", "map_component") instance=ExtResource("3_hclcr")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+player_container = NodePath("Vertically/MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#ContainerSlotSystem")
+map_component = NodePath("../../../Map/Panel/SubViewportContainer/SubViewport/MapComponent")
 
 [node name="MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#VSeparator2" type="VSeparator" parent="MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger/Vertically" index="0"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#ContainerSlotSystem" parent="MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger/Vertically" index="1" instance=ExtResource("3_2smch")]
+[node name="MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#ContainerSlotSystem" parent="MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger/Vertically" index="1" node_paths=PackedStringArray("container_manager") instance=ExtResource("3_2smch")]
 layout_mode = 2
+container_manager = NodePath("../..")
 container_name = "Player Inventory"
 
 [node name="MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#VSeparator3" type="VSeparator" parent="MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger/Vertically" index="2"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="VisualContainerManager" parent="MainContainer/HBoxContainer/CenterScreen/Panel" instance=ExtResource("6_hnoq3")]
+[node name="VisualContainerManager" parent="MainContainer/HBoxContainer/CenterScreen/Panel" node_paths=PackedStringArray("container_manager", "map_component") instance=ExtResource("6_hnoq3")]
 layout_mode = 1
+container_manager = NodePath("../ContainerManger")
+map_component = NodePath("../../../Map/Panel/SubViewportContainer/SubViewport/MapComponent")
 
 [node name="Message" type="Panel" parent="MainContainer/HBoxContainer/CenterScreen"]
 custom_minimum_size = Vector2(0, 180)
@@ -189,7 +194,8 @@ handle_input_locally = false
 size = Vector2i(448, 448)
 render_target_update_mode = 4
 
-[node name="MapComponent" parent="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport" instance=ExtResource("2_fl5ow")]
+[node name="MapComponent" parent="MainContainer/HBoxContainer/Map/Panel/SubViewportContainer/SubViewport" node_paths=PackedStringArray("visual_container") instance=ExtResource("2_fl5ow")]
+visual_container = NodePath("../../../../../CenterScreen/Panel/VisualContainerManager")
 
 [node name="Control" type="Control" parent="MainContainer/HBoxContainer/Map"]
 custom_minimum_size = Vector2(0, 120)

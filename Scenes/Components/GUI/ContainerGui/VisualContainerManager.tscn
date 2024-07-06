@@ -24,14 +24,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="ButtonContent" type="VBoxContainer" parent="ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 alignment = 2
 
-[node name="SampleButton" type="Button" parent="ScrollContainer/VBoxContainer"]
+[node name="SampleButton" type="Button" parent="ScrollContainer/ButtonContent"]
+unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2

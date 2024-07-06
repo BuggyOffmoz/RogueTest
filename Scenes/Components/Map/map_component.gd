@@ -3,6 +3,7 @@ class_name MapComponent
 
 @onready var tile_map : TileMap = $TileMap
 @onready var player : Player = $Player
+@export var visual_container : VisualContainerManager
 
 @export var level_data : LevelData
 
