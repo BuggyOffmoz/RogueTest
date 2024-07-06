@@ -1,0 +1,60 @@
+[gd_scene load_steps=15 format=3 uid="uid://b2l18nrpeldn3"]
+
+[ext_resource type="Script" path="res://Scenes/Components/UI/gui.gd" id="1_wfp3q"]
+[ext_resource type="PackedScene" uid="uid://b5rrhnt2x8lwj" path="res://Scenes/Components/Map/map_component.tscn" id="2_fl5ow"]
+[ext_resource type="PackedScene" uid="uid://btehaxuasr64o" path="res://Scenes/Components/Player/player_controller.tscn" id="2_sthq4"]
+[ext_resource type="PackedScene" uid="uid://cbj3qmrifj67m" path="res://Scenes/Components/GUI/ContainerSlotSystem.tscn" id="3_2smch"]
+[ext_resource type="Script" path="res://Resources/Resources/PlayerStat.gd" id="3_6lrrk"]
+[ext_resource type="PackedScene" uid="uid://lirhc7f4xfac" path="res://Scenes/Components/GUI/ContainerManager.tscn" id="3_hclcr"]
+[ext_resource type="PackedScene" uid="uid://banaa7o8d5u1e" path="res://Scenes/Components/Player/ActionsManager.tscn" id="3_l6i8x"]
+[ext_resource type="PackedScene" uid="uid://de7ncqc1qbp3w" path="res://Scenes/Components/Player/CombatSystem.tscn" id="5_oqc18"]
+[ext_resource type="PackedScene" uid="uid://bfe3elaat32ry" path="res://Scenes/Components/GUI/ContainerGui/VisualContainerManager.tscn" id="6_hnoq3"]
+[ext_resource type="PackedScene" uid="uid://biwofbd21tm7x" path="res://Scenes/Components/GUI/ItemOptionsPopUp.tscn" id="7_uj55t"]
+[ext_resource type="Script" path="res://Scenes/Components/UI/AttackIndicator.gd" id="8_t4h4j"]
+
+[sub_resource type="Resource" id="Resource_12smc"]
+script = ExtResource("3_6lrrk")
+player_name = "Unknown"
+player_description = ""
+base_health = 100
+base_defend_value = 0
+energy_time = 0.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bejj2"]
+size = Vector2(47, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fo58v"]
+size = Vector2(74, 62)
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_wfp3q")
+
+[node name="PlayerController" parent="." node_paths=PackedStringArray("GUI") instance=ExtResource("2_sthq4")]
+GUI = NodePath("..")
+player_stats = SubResource("Resource_12smc")
+
+[node name="ActionsManager" parent="PlayerController" node_paths=PackedStringArray("GUI", "base_container", "actions_buttons", "combat_system", "container_manger", "visual_container", "visual_attack_slot", "visual_defend_slot", "visual_first_item", "visual_second_item") instance=ExtResource("3_l6i8x")]
+GUI = NodePath("../..")
+base_container = NodePath("../../MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger/Vertically/MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#ContainerSlotSystem")
+actions_buttons = [NodePath("../../MainContainer/HBoxContainer/Character/Accions/Attack"), NodePath("../../MainContainer/HBoxContainer/Character/Accions/Defend"), NodePath("../../MainContainer/HBoxContainer/Character/Items/First"), NodePath("../../MainContainer/HBoxContainer/Character/Items/Second")]
+combat_system = NodePath("../CombatSystem")
+container_manger = NodePath("../../MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger")
+visual_container = NodePath("../../MainContainer/HBoxContainer/CenterScreen/Panel/VisualContainerManager")
+visual_attack_slot = NodePath("../../MainContainer/HBoxContainer/Character/Accions/Attack")
+visual_defend_slot = NodePath("../../MainContainer/HBoxContainer/Character/Accions/Defend")
+visual_first_item = NodePath("../../MainContainer/HBoxContainer/Character/Items/First")
+visual_second_item = NodePath("../../MainContainer/HBoxContainer/Character/Items/Second")
+
+[node name="CombatSystem" parent="PlayerController" node_paths=PackedStringArray("GUI", "energy_bar", "health_bar", "player_controller", "attack_indicator") instance=ExtResource("5_oqc18")]
+GUI = NodePath("../..")
+energy_bar = NodePath("../../MainContainer/HBoxContainer/Character/Energy")
+health_bar = NodePath("../../MainContainer/HBoxContainer/Character/Health")
+player_controller = NodePath("..")
+attack_indicator = NodePath("../../MainContainer/HBoxContainer/CenterScreen/Panel/AttackIndicator")
+
+[node name="MainContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_
