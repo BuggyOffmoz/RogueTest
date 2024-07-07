@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpj3s40dsmq6s"]
+
+[ext_resource type="Script" path="res://Scenes/Components/Combat/slow_motion.gd" id="1_0tdl6"]
+
+[node name="SlowMotion" type="Timer"]
+script = ExtResource("1_0tdl6")
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]

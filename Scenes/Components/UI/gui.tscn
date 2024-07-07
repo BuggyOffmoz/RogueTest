@@ -224,7 +224,10 @@ offset_left = 1.0
 offset_top = 247.0
 offset_right = 1.0
 offset_bottom = 309.0
+indicator_mov_time = 1.2
+delay_sec = 0.25
 label_text = "Attack!"
+points_quantity = 2
 
 [node name="DefendIndicator2" parent="MainContainer/HBoxContainer/CenterScreen/Panel" instance=ExtResource("10_uoxc1")]
 layout_mode = 1

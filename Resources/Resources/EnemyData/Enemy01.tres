@@ -14,7 +14,5 @@ enemy_description = "Mi descripción"
 screen_texture = ExtResource("1_7w4c2")
 health = 100.0
 attack_damage = 15.0
-
 attack_time_range = Vector2(3, 5)
 items_dropeables = Array[Resource("res://Resources/Resources/InventoryResources/INV_Item.gd")]([ExtResource("1_uolv0"), ExtResource("1_uolv0"), ExtResource("1_uolv0"), ExtResource("1_uolv0"), ExtResource("2_ddr3x"), ExtResource("2_ddr3x"), ExtResource("3_uhs1d"), ExtResource("3_uhs1d"), ExtResource("3_1n3db")])
-

@@ -8,8 +8,6 @@ class_name CombatSystem
 @export var attack_indicator : DefendIndicator
 @export var defend_indicator : DefendIndicator
 
-@onready var defend_timer : Timer = $DefendTime
-
 var enemies_in_scene : Array[EnemyBase] = []
 
 var energy_tween : Tween
@@ -64,6 +62,14 @@ func player_attack(_item : InventoryItem) -> void:
 			damage = damage / 5
 		reset_tween(_item.e_item_type.energy_time)
 		GUI.enemy_screen.get_node("EnemyBase").on_hurt(damage)
+		
+		## EFFECTS ##
+		
+		$SlowMotion.request_slowmo_change()
+		#attack_indicator.attack_paused(true)
+		#await get_tree().create_timer(0.2).timeout
+		#attack_indicator.attack_paused(false)
+		
 	else:
 		GUI.message_label.text += '\nPlayer Miss Attack!'
 	
