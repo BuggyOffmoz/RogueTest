@@ -1,17 +1,17 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=7 format=3 uid="uid://7pojs6x3y2hi"]
 
-[ext_resource type="Texture2D" uid="uid://cl8l6qgtyushx" path="res://Assets/2D/Enemies/01/puppet_sketch.png" id="1_7w4c2"]
 [ext_resource type="Script" path="res://Resources/Resources/EnemyData/EnemyData.gd" id="1_qtmm7"]
 [ext_resource type="Resource" uid="uid://k8kbd4vdl1j" path="res://Resources/Resources/InventoryResources/AllItems/Items/Coins.tres" id="1_uolv0"]
 [ext_resource type="Resource" uid="uid://dip52jsxn70j4" path="res://Resources/Resources/InventoryResources/AllItems/Items/Consumibles/BucketPopCorn.tres" id="2_ddr3x"]
 [ext_resource type="Resource" uid="uid://chhf6gvpwuopu" path="res://Resources/Resources/InventoryResources/AllItems/Items/Consumibles/CottonCandy.tres" id="3_1n3db"]
 [ext_resource type="Resource" uid="uid://b7yqru5wgj25o" path="res://Resources/Resources/InventoryResources/AllItems/Weapons/PoloCircus.tres" id="3_uhs1d"]
+[ext_resource type="Texture2D" uid="uid://cdukm5ue1mqnt" path="res://Assets/2D/Enemies/01/Sprite-0001.png" id="5_prtld"]
 
 [resource]
 script = ExtResource("1_qtmm7")
 enemy_name = "Mi Nombre"
 enemy_description = "Mi descripción"
-screen_texture = ExtResource("1_7w4c2")
+screen_texture = ExtResource("5_prtld")
 health = 100.0
 attack_damage = 15.0
 attack_time_range = Vector2(3, 5)
