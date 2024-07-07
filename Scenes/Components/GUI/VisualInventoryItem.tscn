@@ -8,8 +8,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1102.0
-offset_bottom = -598.0
+offset_right = -1805.0
+offset_bottom = -965.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -48,5 +48,19 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "10"
 
+[node name="Equipped" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -12.0
+offset_bottom = 31.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 22
+text = "E"
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

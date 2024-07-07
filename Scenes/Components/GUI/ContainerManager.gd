@@ -6,14 +6,17 @@ const SLOT = preload("res://Scenes/Components/GUI/ContainerSlotSystem.tscn")
 
 
 ### Nodos para usar
+@onready var order_system = get_node("Vertically")
+
 @export var player_container : ContainerSlotSystem
 @export var map_component : MapComponent
 @export var visual_container : VisualContainerManager
+@export var action_manager : ActionsManager
+@export var comparative_tab : ComparativeTab
 
 ### Variables
 var actual_containers : Array[ContainerSlotSystem]
 
-@onready var order_system = get_node("Vertically")
 
 func _ready():
 	map_component.connect('MapGenerated', initialize_container)
@@ -21,7 +24,10 @@ func _ready():
 	
 func initialize_container():
 	create_empty_containers()
-	
+
+### Funciones para el manejo de inventario (añadir, quitar mover etc etc)
+
+#region Container management
 func create_empty_containers():
 	for i in map_component.get_empty_cells():
 		var new_container = SLOT.instantiate()
@@ -82,4 +88,57 @@ func show_container():
 		pass
 	else:
 		visible = !visible 
+#endregion
+
+func compare_items(_item_from_inventory:InventoryItem):
+	var item_to_compare : InventoryItem
+	
+	var comparations_array : Array[Array]
+	var stats_to_compare = []
+	if not _item_from_inventory.equippable:
+		return
+	
+	if _item_from_inventory.e_item_type.item_type == AllItemInfo.equippable_item_type.WEAPON:
+		stats_to_compare = ["base_damage"]
+		
+		if action_manager.actions_management_items["attack_item"]:
+			item_to_compare = action_manager.actions_management_items["attack_item"]
+		else:
+			item_to_compare = load("res://Resources/Resources/InventoryResources/AllItems/Weapons/DefaultWeapon.tres")
+	
+	#if _item_from_inventory.e_item_type.item_type == AllItemInfo.equippable_item_type.DEFEND:
+		#stats_to_compare = ["base_damage"]
+	
+	for stat:String in stats_to_compare:
+		var best_item_stat = to_max_comparative(_item_from_inventory.e_item_type.get(stat),item_to_compare.e_item_type.get(stat))
+		comparations_array.append(["Damage",_item_from_inventory.e_item_type.get(stat),item_to_compare.e_item_type.get(stat),best_item_stat])
+		
+	show_comparative_tab(comparations_array)
+	
+
+
+func comparation_closed():
+	comparative_tab.active = false
+	
+
+func to_max_comparative(_number_a,_number_b) -> int:
+	
+	if _number_a > _number_b:
+		return 2
+	elif _number_a > _number_b:
+		return 0
+	
+	return -1
+	
+
+func show_comparative_tab(_all_comparatibe_numbers:Array[Array]):
+	comparative_tab.clear_all_comparations()
+	
+	for comparative_numbers :Array in _all_comparatibe_numbers:
+		comparative_tab.add_comparation(comparative_numbers)
+	
+	comparative_tab.active = true
+	
+	
+
 
