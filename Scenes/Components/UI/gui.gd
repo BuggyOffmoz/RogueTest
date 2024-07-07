@@ -3,7 +3,7 @@ extends CanvasLayer
 const ENEMY = preload("res://Scenes/Entities/Enemies/enemy_base.tscn")
 
 ## Main Screen ##
-@onready var enemy_screen : Control = %Panel
+@onready var enemy_screen : Panel = %Panel
 @onready var message_label : RichTextLabel = %GameDes
 @onready var container_manger = %ContainerManger as ContainerManager
 @onready var game_over_screen = %GameOverScreen
@@ -13,17 +13,11 @@ const ENEMY = preload("res://Scenes/Entities/Enemies/enemy_base.tscn")
 
 func _ready():
 	GameState.connect("ChangeState", state_changed)
+	GameState.connect("StartCombat", start_combat)
 	GameState.connect("PlayerDead", game_over)
 	
 func start_combat(enemies : Array[EnemyData]):
 	create_enemy(enemies)
-	
-func get_enemies() -> Array[EnemyBase]:
-	var enemies : Array[EnemyBase] = []
-	for i in enemy_screen.get_children():
-		if i is EnemyBase:
-			enemies.append(i)
-	return enemies
 	
 func create_enemy(enemies : Array[EnemyData]):
 	var enemy = ENEMY.instantiate()

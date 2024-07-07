@@ -59,11 +59,10 @@ func add_container(_new_container:ContainerSlotSystem):
 		if visible and !order_system.get_children().has(_new_container):
 			order_system.add_child(_new_container)
 
-func create_container_from_enemy(_enemy:EnemyBase):
-	var _enemy_data = _enemy.enemy_data
+func create_container_from_enemy(_enemy:EnemyData):
 	#var alt = load("res://Resources/Resources/InventoryResources/AllItems.tres")
 	#create_specific_container_in_room([alt.all_items.pick_random()])
-	create_specific_container_in_room([_enemy_data.items_dropeables.pick_random()])
+	create_specific_container_in_room([_enemy.items_dropeables.pick_random()])
 	visual_container.verify_items_in_cell()
 
 func create_specific_container_in_room(_items_inside:Array[InventoryItem]):

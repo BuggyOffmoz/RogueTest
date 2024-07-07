@@ -8,8 +8,7 @@ var health : float = 0.0 : set = _set_health, get = _get_health
 
 @onready var sprite : TextureRect = $Sprite
 @onready var health_bar : ProgressBar = $ProgressBar
-@onready var attack_timer : ProgressBar = $Attack
-#@onready var attack_timer : Timer = $AttakTimer
+@onready var attack_timer : Timer = $AttakTimer
 
 func _ready():
 	health_bar.max_value = enemy_data.health
@@ -18,10 +17,9 @@ func _ready():
 	sprite.texture = enemy_data.screen_texture
 	
 	randomize()
-	start_attack_timer()
-	#var value = randf_range(enemy_data.attack_time_range.x, enemy_data.attack_time_range.y)
-	#attack_timer.set_wait_time(value)
-	#attack_timer.start()
+	var value = randf_range(enemy_data.attack_time_range.x, enemy_data.attack_time_range.y)
+	attack_timer.set_wait_time(value)
+	attack_timer.start()
 	
 func on_hurt(damage : float):  ## En un futuro debería ser una clase  que guarde varios datos como:
 	var curr_health = health   ## Damage, Tipo de daño, knockback? etc.
@@ -30,8 +28,7 @@ func on_hurt(damage : float):  ## En un futuro debería ser una clase  que guard
 		curr_health = 0
 		## Enemy Dead State
 		#EnemyDead.emit(self)
-		GameState.enemy_defeated(self)
-		GameState.ai_controller.remove_enemy(self)
+		GameState.enemy_defeated(enemy_data)
 		queue_free()					 	## Solo por ahora queue_free
 	else:
 		## Enemy Hurt State
@@ -45,16 +42,16 @@ func _set_health(value : float):
 func _get_health() -> float:
 	return health
 
-func start_attack_timer():
+func _on_attak_timer_timeout():
 	#print('enemy_base.gd: ' + "Enemy Start Attack")
-	attack_timer.value = 0.0
-	var time_value = randf_range(enemy_data.attack_time_range.x, enemy_data.attack_time_range.y)
-	var tween = create_tween()
-	tween.tween_property(attack_timer, 'value', 100, time_value)
-	tween.tween_callback(request_attack)
-	
-func request_attack():
-	GameState.ai_controller.ai_attack_request(self)
+	#var tween = create_tween().set_loops(4)
+	#tween.tween_property($Label, 'visible', true, 0.1)
+	#tween.tween_property($Label, 'visible', false, 0.1).set_delay(0.1)
+	#await get_tree().create_timer(1.0).timeout
+	var value = randf_range(enemy_data.attack_time_range.x, enemy_data.attack_time_range.y)
+	attack_timer.set_wait_time(value)
+	attack_timer.start()
+	attack()
 	
 func attack():
-	GameState.enemy_attack(self)
+	GameState.enemy_attack(enemy_data)

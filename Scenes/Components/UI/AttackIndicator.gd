@@ -1,11 +1,10 @@
 extends Control
-class_name DefendIndicator
+class_name AttackIndicator
 
-signal EnemyAttackFinished
+signal AttackFinished
 
 @export var point_margin : float = 128.0
 @export var indicator_mov_time : float = 2.0
-@export var label_text : String
 #@export_enum('LINEAL', 'BOUNCE') var trans : int = 0
 
 @onready var point = $Point
@@ -16,7 +15,6 @@ var tween : Tween
 
 func _ready() -> void:
 	randomize()
-	$Label.text = label_text
 	#start_attack()
 
 func start_attack() -> void:
@@ -29,7 +27,7 @@ func start_attack() -> void:
 	
 func attack_finished() -> void:
 	attack_stopped()
-	EnemyAttackFinished.emit()
+	AttackFinished.emit()
 	
 func attack_stopped():
 	if tween:

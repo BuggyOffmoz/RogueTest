@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqotbd5ry0y1r"]
-
-[ext_resource type="Script" path="res://Scenes/Components/Enemies/ai_controller.gd" id="1_hnlta"]
-
-[node name="AIController" type="Node"]
-script = ExtResource("1_hnlta")
