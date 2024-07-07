@@ -1,12 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5rrhnt2x8lwj"]
+[gd_scene load_steps=16 format=3 uid="uid://b5rrhnt2x8lwj"]
 
 [ext_resource type="Texture2D" uid="uid://dre7luqa78f6h" path="res://Assets/2D/Map/Slot.png" id="1_0shtt"]
 [ext_resource type="Script" path="res://Scenes/Components/Map/map_component.gd" id="1_gnjh8"]
 [ext_resource type="Resource" uid="uid://7pojs6x3y2hi" path="res://Resources/Resources/EnemyData/Enemy01.tres" id="2_r28o3"]
+[ext_resource type="Resource" uid="uid://cluffjp25kg5e" path="res://Resources/Resources/InventoryResources/AllItems/Items/Consumibles/Bread.tres" id="3_2xcvt"]
 [ext_resource type="Texture2D" uid="uid://b7flnf44fkx4d" path="res://icon.svg" id="3_41mo0"]
 [ext_resource type="Script" path="res://Resources/Resources/LevelData/LevelData.gd" id="3_ccm6i"]
 [ext_resource type="Script" path="res://Scenes/Entities/Player/Player.gd" id="3_lywi7"]
 [ext_resource type="PackedScene" uid="uid://bbcfkpn6g5m6l" path="res://Scenes/Components/Player/CellDetector.tscn" id="4_2lw4j"]
+[ext_resource type="Resource" uid="uid://c4d2buys36nwk" path="res://Resources/Resources/InventoryResources/AllItems/Weapons/Shield.tres" id="4_bska3"]
+[ext_resource type="Resource" uid="uid://cna60dikcjf2a" path="res://Resources/Resources/InventoryResources/AllItems/Weapons/Sword.tres" id="5_gajyx"]
 [ext_resource type="Script" path="res://Scenes/Components/Player/CellDetector.gd" id="5_pxqd6"]
 [ext_resource type="PackedScene" uid="uid://dtow6ji8ii8gq" path="res://Scenes/Components/Map/fog_component.tscn" id="7_os48y"]
 
@@ -15,6 +18,9 @@ script = ExtResource("3_ccm6i")
 enemies_type = Array[Resource("res://Resources/Resources/EnemyData/EnemyData.gd")]([ExtResource("2_r28o3")])
 enemies_in_scene = Array[Resource("res://Resources/Resources/EnemyData/EnemyData.gd")]([ExtResource("2_r28o3")])
 containers_in_scene = {}
+treasure_probability = 15.0
+treasure_qantity = 2
+items_in_scene = Array[Resource("res://Resources/Resources/InventoryResources/INV_Item.gd")]([ExtResource("3_2xcvt"), ExtResource("4_bska3"), ExtResource("5_gajyx")])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pca7b"]
 texture = ExtResource("1_0shtt")
@@ -70,6 +76,8 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_41mo0")
 
 [node name="FogComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_os48y")]
+lightWidth = 196
+lightHeight = 196
 player = NodePath("../Player")
 
 [connection signal="OnExitLevel" from="Player" to="." method="_on_player_on_exit_level"]

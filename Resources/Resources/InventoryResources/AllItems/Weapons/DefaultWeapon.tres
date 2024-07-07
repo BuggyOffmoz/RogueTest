@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="InventoryItem" load_steps=4 format=3 uid="uid://dt85oibcabjbm"]
 
-[ext_resource type="Script" path="res://Resources/Resources/InventoryResources/ItemTypeResources/EquippableObject.gd" id="1_wiayl"]
-[ext_resource type="Script" path="res://Resources/Resources/InventoryResources/INV_Item.gd" id="2_74amq"]
+[ext_resource type="Script" path="res://Resources/Resources/InventoryResources/ItemTypeResources/EquippableObject.gd" id="1_rffji"]
+[ext_resource type="Script" path="res://Resources/Resources/InventoryResources/INV_Item.gd" id="2_57icd"]
 
 [sub_resource type="Resource" id="Resource_tdh4u"]
-script = ExtResource("1_wiayl")
+script = ExtResource("1_rffji")
 item_type = 0
 item_weight = 0
 item_condition = 100
-base_damage = 100.0
+base_damage = 10.0
 base_critical_chance = 0
 energy_time = 0.5
 critical_damage = Vector2(0, 0)
@@ -17,7 +17,7 @@ shield_time = 0.3
 shield_cooldown = 1.0
 
 [resource]
-script = ExtResource("2_74amq")
+script = ExtResource("2_57icd")
 item_id = "HANDS"
 equippable = true
 consumable = false

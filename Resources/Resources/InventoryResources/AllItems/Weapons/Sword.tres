@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=5 format=3 uid="uid://cna60dikcjf2a"]
+
+[ext_resource type="Texture2D" uid="uid://cgnwx8slscghs" path="res://Assets/2D/Textures/GUI/InventoryItems/Sword.png" id="1_7w1sj"]
+[ext_resource type="Script" path="res://Resources/Resources/InventoryResources/INV_Item.gd" id="1_daafm"]
+[ext_resource type="Script" path="res://Resources/Resources/InventoryResources/ItemTypeResources/EquippableObject.gd" id="1_qo5t7"]
+
+[sub_resource type="Resource" id="Resource_pmkfy"]
+script = ExtResource("1_qo5t7")
+item_type = 0
+item_weight = 0
+item_condition = 100
+base_damage = 30.0
+base_critical_chance = 0
+energy_time = 1.0
+critical_damage = Vector2(0, 0)
+shield_amount = 0
+shield_time = 0.3
+shield_cooldown = 1.0
+
+[resource]
+script = ExtResource("1_daafm")
+item_id = "SWORD"
+item_icon = ExtResource("1_7w1sj")
+equippable = true
+consumable = false
+accessible = true
+e_item_type = SubResource("Resource_pmkfy")

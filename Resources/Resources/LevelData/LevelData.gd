@@ -8,6 +8,11 @@ class_name LevelData
 
 @export var containers_in_scene : Dictionary
 
+@export_category("Items")
+@export_range(0.0, 100.0) var treasure_probability : float = 20.0
+@export_range(0, 5) var treasure_qantity : int = 2
+@export var items_in_scene : Array[InventoryItem]
+
 func add_items_to_cell(_items_inside : Array[InventoryItem], _player_position:Vector2i):
 	if containers_in_scene.has(_player_position):
 		print('LevelData.gd: Add Items')
@@ -56,5 +61,15 @@ func verify_containers_in_room(_player_position:Vector2i) -> bool:
 	
 	if containers_in_scene.has(_player_position):
 		return(true)
+	else:
+		return(false)
+
+func verify_items_in_cell(_player_position:Vector2i) -> bool:
+	if containers_in_scene.has(_player_position):
+		var container = containers_in_scene.get(_player_position)
+		if container[0].item_inventory != []:
+			return(true)
+		else:
+			return false
 	else:
 		return(false)

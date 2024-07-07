@@ -2,8 +2,6 @@ extends Node
 
 class_name ActionsManager
 
-const default_weapon = preload("res://Resources/Resources/InventoryResources/Weapons/DefaultWeapon.tres")
-
 ### Nodes
 @export var GUI : CanvasLayer
 @export var base_container : ContainerSlotSystem
@@ -25,7 +23,7 @@ const default_weapon = preload("res://Resources/Resources/InventoryResources/Wea
 @export var visual_second_item : Control
 
 var actions_management_items = {
-	"default_item" : default_weapon,
+	"default_item" : null,
 	"attack_item" : null,
 	"defend_item" : null,
 	"first_item" : null,
@@ -34,6 +32,7 @@ var actions_management_items = {
 
 
 func _ready():
+	actions_management_items.default_item = ItemPreloader.get_item('HANDS')
 	base_configurations()
 
 

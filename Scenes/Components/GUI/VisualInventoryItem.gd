@@ -20,7 +20,7 @@ var internal_item : InventoryItem
 func _ready():
 	actualize_inventory_item()
 
-func _process(delta):
+func _process(_delta):
 	if image_in_moving and inventory.item_picked == self:
 		image_in_moving.global_position = get_global_mouse_position() + Vector2(20,20)
 

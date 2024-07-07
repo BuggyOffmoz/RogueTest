@@ -83,8 +83,13 @@ func create_random_map():
 		map_generated = check_path(initial_position, i)
 		if map_generated == false:
 			break
+			
+	#create_treasures()
 	
 	player.global_position = initial_position
+	
+#func create_treasures():
+#	pass
 	
 func create_enemies() -> Array:
 	var enemies_pos = []

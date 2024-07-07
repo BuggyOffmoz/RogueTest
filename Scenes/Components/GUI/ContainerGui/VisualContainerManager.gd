@@ -12,7 +12,11 @@ func _ready():
 	
 	base_configurations()
 
-
+func verify_items_in_cell():
+	var player_pos = map_component.player.global_position
+	var is_item_in_cells = map_component.level_data.verify_items_in_cell(player_pos)
+	#if is_item_in_cells:
+	GUI.item_icon.visible = is_item_in_cells
 #func verify_containers_in_room():
 	#if map_component.level_data.verify_containers_in_room(map_component.player.global_position):
 		#var containers_in_room : Array = map_component.level_data.get_containers_in_room(map_component.player.global_position)

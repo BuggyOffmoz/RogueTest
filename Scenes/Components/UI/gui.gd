@@ -8,6 +8,8 @@ const ENEMY = preload("res://Scenes/Entities/Enemies/enemy_base.tscn")
 @onready var container_manger = %ContainerManger as ContainerManager
 @onready var game_over_screen = %GameOverScreen
 
+@onready var item_icon : Label = %Item_icon
+
 
 func _ready():
 	GameState.connect("ChangeState", state_changed)

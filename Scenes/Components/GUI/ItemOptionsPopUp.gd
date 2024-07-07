@@ -16,7 +16,7 @@ func _input(event):
 	if event.is_action_pressed("item_normal_action") and visible and verify_input():
 		visible = false
 	
-func _process(delta):
+func _process(_delta):
 	if visible:
 		verify_item_existence()
 

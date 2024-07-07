@@ -8,6 +8,7 @@ const SLOT = preload("res://Scenes/Components/GUI/ContainerSlotSystem.tscn")
 ### Nodos para usar
 @export var player_container : ContainerSlotSystem
 @export var map_component : MapComponent
+@export var visual_container : VisualContainerManager
 
 ### Variables
 var actual_containers : Array[ContainerSlotSystem]
@@ -53,8 +54,10 @@ func add_container(_new_container:ContainerSlotSystem):
 			order_system.add_child(_new_container)
 
 func create_container_from_enemy(_enemy:EnemyData):
-	var alt = load("res://Resources/Resources/InventoryResources/AllItems.tres")
-	create_specific_container_in_room([alt.all_items.pick_random()])
+	#var alt = load("res://Resources/Resources/InventoryResources/AllItems.tres")
+	#create_specific_container_in_room([alt.all_items.pick_random()])
+	create_specific_container_in_room([_enemy.items_dropeables.pick_random()])
+	visual_container.verify_items_in_cell()
 
 func create_specific_container_in_room(_items_inside:Array[InventoryItem]):
 	#var new_container = SLOT.instantiate()

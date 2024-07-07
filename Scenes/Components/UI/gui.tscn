@@ -60,6 +60,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Item_icon" type="Label" parent="MainContainer"]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+layout_mode = 2
+offset_left = 106.0
+offset_top = 845.0
+offset_right = 154.0
+offset_bottom = 1020.0
+theme_override_font_sizes/font_size = 128
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="MainContainer"]
 layout_mode = 2
 offset_left = 50.0
@@ -171,7 +185,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(1080, 720)
 layout_mode = 2
 
-[node name="ContainerManger" parent="MainContainer/HBoxContainer/CenterScreen/Panel" node_paths=PackedStringArray("player_container", "map_component") instance=ExtResource("3_hclcr")]
+[node name="ContainerManger" parent="MainContainer/HBoxContainer/CenterScreen/Panel" node_paths=PackedStringArray("player_container", "map_component", "visual_container") instance=ExtResource("3_hclcr")]
 unique_name_in_owner = true
 process_mode = 3
 visible = false
@@ -179,6 +193,7 @@ z_index = 2
 layout_mode = 1
 player_container = NodePath("Vertically/MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#ContainerSlotSystem")
 map_component = NodePath("../../../Map/Panel/SubViewportContainer/SubViewport/MapComponent")
+visual_container = NodePath("../VisualContainerManager")
 
 [node name="MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#VSeparator2" type="VSeparator" parent="MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger/Vertically" index="0"]
 custom_minimum_size = Vector2(0, 25)
