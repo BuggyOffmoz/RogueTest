@@ -99,19 +99,24 @@ func compare_items(_item_from_inventory:InventoryItem):
 		return
 	
 	if _item_from_inventory.e_item_type.item_type == AllItemInfo.equippable_item_type.WEAPON:
-		stats_to_compare = ["base_damage"]
+		stats_to_compare = ["base_damage","energy_time","item_condition"]
 		
 		if action_manager.actions_management_items["attack_item"]:
 			item_to_compare = action_manager.actions_management_items["attack_item"]
 		else:
 			item_to_compare = load("res://Resources/Resources/InventoryResources/AllItems/Weapons/DefaultWeapon.tres")
 	
-	#if _item_from_inventory.e_item_type.item_type == AllItemInfo.equippable_item_type.DEFEND:
-		#stats_to_compare = ["base_damage"]
+	if _item_from_inventory.e_item_type.item_type == AllItemInfo.equippable_item_type.DEFEND:
+		stats_to_compare = ["shield_amount","shield_time","item_condition"]
+		
+		if action_manager.actions_management_items["defend_item"]:
+			item_to_compare = action_manager.actions_management_items["defend_item"]
+		else:
+			item_to_compare = load("res://Resources/Resources/InventoryResources/AllItems/Weapons/DefaultWeapon.tres")
 	
 	for stat:String in stats_to_compare:
 		var best_item_stat = to_max_comparative(_item_from_inventory.e_item_type.get(stat),item_to_compare.e_item_type.get(stat))
-		comparations_array.append(["Damage",_item_from_inventory.e_item_type.get(stat),item_to_compare.e_item_type.get(stat),best_item_stat])
+		comparations_array.append([stat,_item_from_inventory.e_item_type.get(stat),item_to_compare.e_item_type.get(stat),best_item_stat])
 		
 	show_comparative_tab(comparations_array)
 	

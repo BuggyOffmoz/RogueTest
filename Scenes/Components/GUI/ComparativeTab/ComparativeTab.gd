@@ -9,7 +9,7 @@ func _process(delta):
 	if active:
 		if not visible:
 			visible = true
-		
+		adjust_bg_size()
 		global_position = get_global_mouse_position() + Vector2(15,15)
 	elif visible:
 		visible = false
@@ -27,6 +27,11 @@ func add_comparation(_comparation_array:Array):
 	
 	new_comparation_template.visible = true
 	%ComparativeContent.add_child(new_comparation_template)
+	
+
+func adjust_bg_size():
+	%LocalBG.size = %ComparativeContent.size
+
 
 
 func clear_all_comparations():

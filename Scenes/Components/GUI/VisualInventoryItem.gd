@@ -44,6 +44,7 @@ func actualize_inventory_item():
 			visual_item_amount.visible = false
 		
 		if item_amount <= 0:
+			print("ER")
 			inventory.try_erase_item(internal_item,1,self)
 
 func create_image_move_item():

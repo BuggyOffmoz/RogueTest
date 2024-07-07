@@ -4,7 +4,6 @@
 
 [node name="ComparativeTab" type="Control"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 155.0
@@ -13,12 +12,10 @@ mouse_filter = 2
 script = ExtResource("1_yvx88")
 
 [node name="LocalBG" type="ColorRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 30.0
+offset_bottom = 103.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.309804)
 

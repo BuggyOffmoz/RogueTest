@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://cl8l6qgtyushx" path="res://Assets/2D/Enemies/01/puppet_sketch.png" id="1_7w4c2"]
 [ext_resource type="Script" path="res://Resources/Resources/EnemyData/EnemyData.gd" id="1_qtmm7"]
 [ext_resource type="Resource" uid="uid://k8kbd4vdl1j" path="res://Resources/Resources/InventoryResources/AllItems/Items/Coins.tres" id="1_uolv0"]
-[ext_resource type="Resource" uid="uid://c4d2buys36nwk" path="res://Resources/Resources/InventoryResources/AllItems/Weapons/Shield.tres" id="2_pvsfj"]
-[ext_resource type="Resource" uid="uid://cna60dikcjf2a" path="res://Resources/Resources/InventoryResources/AllItems/Weapons/Sword.tres" id="3_s4e77"]
-[ext_resource type="Resource" uid="uid://cluffjp25kg5e" path="res://Resources/Resources/InventoryResources/AllItems/Items/Consumibles/Bread.tres" id="4_dxeqe"]
+[ext_resource type="Resource" uid="uid://dip52jsxn70j4" path="res://Resources/Resources/InventoryResources/AllItems/Items/Consumibles/BucketPopCorn.tres" id="2_ddr3x"]
+[ext_resource type="Resource" uid="uid://chhf6gvpwuopu" path="res://Resources/Resources/InventoryResources/AllItems/Items/Consumibles/CottonCandy.tres" id="3_1n3db"]
+[ext_resource type="Resource" uid="uid://b7yqru5wgj25o" path="res://Resources/Resources/InventoryResources/AllItems/Weapons/PoloCircus.tres" id="3_uhs1d"]
 
 [resource]
 script = ExtResource("1_qtmm7")
@@ -15,4 +15,4 @@ screen_texture = ExtResource("1_7w4c2")
 health = 100.0
 attack_damage = 15.0
 attack_time_range = Vector2(2, 3.5)
-items_dropeables = Array[Resource("res://Resources/Resources/InventoryResources/INV_Item.gd")]([ExtResource("1_uolv0"), ExtResource("2_pvsfj"), ExtResource("3_s4e77"), ExtResource("4_dxeqe")])
+items_dropeables = Array[Resource("res://Resources/Resources/InventoryResources/INV_Item.gd")]([ExtResource("1_uolv0"), ExtResource("1_uolv0"), ExtResource("1_uolv0"), ExtResource("1_uolv0"), ExtResource("2_ddr3x"), ExtResource("2_ddr3x"), ExtResource("3_uhs1d"), ExtResource("3_uhs1d"), ExtResource("3_1n3db")])

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=5 format=3 uid="uid://dip52jsxn70j4"]
+
+[ext_resource type="Script" path="res://Resources/Resources/InventoryResources/ItemTypeResources/ConsumableObject.gd" id="1_abe4j"]
+[ext_resource type="Texture2D" uid="uid://r4mkdlr17ch7" path="res://Assets/2D/Textures/GUI/InventoryItems/bucket_pop_corn.png" id="2_qaren"]
+[ext_resource type="Script" path="res://Resources/Resources/InventoryResources/INV_Item.gd" id="3_oe8nt"]
+
+[sub_resource type="Resource" id="Resource_yqml3"]
+script = ExtResource("1_abe4j")
+item_type = 0
+life_recovery = 25
+shield_recovery = 0
+hunger_value = 15
+enchanted_value = 0
+
+[resource]
+script = ExtResource("3_oe8nt")
+item_id = "BUCKET_POP_CORN"
+item_icon = ExtResource("2_qaren")
+stackeable = true
+equippable = false
+consumable = true
+accessible = true
+c_item_type = SubResource("Resource_yqml3")
