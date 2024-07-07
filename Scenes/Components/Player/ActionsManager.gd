@@ -58,7 +58,12 @@ func equipe_item(_item:InventoryItem):
 	
 
 func attack_item():
-	if GameState.game_state == GameState.COMBAT:
+	if GameState.game_state == GameState.COMBAT and \
+	GameState.combat_state != GameState.DEFEND:
+		if GameState.combat_state == GameState.IDLE:
+			combat_system.player_on_attack_state()
+			return
+		
 		#print(actions_management_items["attack_item"] != null)
 		if actions_management_items["attack_item"] != null:
 			var _item : InventoryItem = actions_management_items["attack_item"]
