@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameState="*res://Autoloads/GameState.gd"
+ItemPreloader="*res://Autoloads/ItemPreloader.gd"
 
 [display]
 

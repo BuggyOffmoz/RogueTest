@@ -24,7 +24,7 @@ class_name ConsumableObject
 @export_range(0,100,1) var enchanted_value = 0
 
 
-func _validate_property(property: Dictionary) -> void:
+func _validate_property(_property: Dictionary) -> void:
 	pass
 	#if property.name in ["hunger_value"]:
 		#if item_type == AllItemInfo.consumable_item_type.FOOD:

@@ -47,13 +47,13 @@ func move_player():
 		return
 	global_position = new_pos
 
-	#visual_container_notificate()
+	visual_container_notificate()
 
 
 ## Añadido de Offmoz
-#func visual_container_notificate():
-	#if map_component.visual_container != null:
-		#map_component.visual_container.verify_containers_in_room()
+func visual_container_notificate():
+	if map_component.visual_container != null:
+		map_component.visual_container.verify_items_in_cell()
 ###
 
 func cell_interactions(cell_type : String):

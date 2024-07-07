@@ -12,3 +12,6 @@ class_name EnemyData
 
 @export_category('Attack Variables')
 @export var attack_time_range : Vector2 = Vector2(2.0, 5.0)
+
+@export_category('Items')
+@export var items_dropeables : Array[InventoryItem]

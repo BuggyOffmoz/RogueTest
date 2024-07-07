@@ -1,7 +1,11 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://7pojs6x3y2hi"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=7 format=3 uid="uid://7pojs6x3y2hi"]
 
 [ext_resource type="Texture2D" uid="uid://cl8l6qgtyushx" path="res://Assets/2D/Enemies/01/puppet_sketch.png" id="1_7w4c2"]
 [ext_resource type="Script" path="res://Resources/Resources/EnemyData/EnemyData.gd" id="1_qtmm7"]
+[ext_resource type="Resource" uid="uid://k8kbd4vdl1j" path="res://Resources/Resources/InventoryResources/AllItems/Items/Coins.tres" id="1_uolv0"]
+[ext_resource type="Resource" uid="uid://c4d2buys36nwk" path="res://Resources/Resources/InventoryResources/AllItems/Weapons/Shield.tres" id="2_pvsfj"]
+[ext_resource type="Resource" uid="uid://cna60dikcjf2a" path="res://Resources/Resources/InventoryResources/AllItems/Weapons/Sword.tres" id="3_s4e77"]
+[ext_resource type="Resource" uid="uid://cluffjp25kg5e" path="res://Resources/Resources/InventoryResources/AllItems/Items/Consumibles/Bread.tres" id="4_dxeqe"]
 
 [resource]
 script = ExtResource("1_qtmm7")
@@ -9,5 +13,6 @@ enemy_name = "Mi Nombre"
 enemy_description = "Mi descripción"
 screen_texture = ExtResource("1_7w4c2")
 health = 100.0
-attack_damage = 20.0
-attack_time_range = Vector2(2, 5)
+attack_damage = 15.0
+attack_time_range = Vector2(2, 3.5)
+items_dropeables = Array[Resource("res://Resources/Resources/InventoryResources/INV_Item.gd")]([ExtResource("1_uolv0"), ExtResource("2_pvsfj"), ExtResource("3_s4e77"), ExtResource("4_dxeqe")])

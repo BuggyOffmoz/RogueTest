@@ -31,7 +31,7 @@ class_name EquipableObject
 @export var shield_cooldown : float = 1.0
 
 
-func _validate_property(property: Dictionary) -> void:
+func _validate_property(_property: Dictionary) -> void:
 	pass
 	#if property.name in ["base_damage","base_critical_chance"]:
 		#if item_type == AllItemInfo.equippable_item_type.WEAPON:

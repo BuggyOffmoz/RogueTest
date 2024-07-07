@@ -38,7 +38,7 @@ class_name InventoryItem
 
 @export var c_item_type : ConsumableObject
 
-func _validate_property(property: Dictionary) -> void:
+func _validate_property(_property: Dictionary) -> void:
 	pass
 	#if property.name in ["e_item_type"]:
 		#if equippable:
