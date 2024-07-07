@@ -8,7 +8,6 @@ func _ready():
 	print(preload_items)
 	
 func get_item(_item_id: String) -> InventoryItem:
-	#var item : InventoryItem = null
 	for i in preload_items:
 		if i.item_id == _item_id:
 			return i
@@ -29,16 +28,16 @@ func files_load(path : String, extension : String):
 		var file_name = dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
-				var subfolder = path + "/" + file_name
+				var subfolder = path + file_name + '/'
 				var res_in_subfolder = files_load(subfolder, extension)
 				items.append_array(res_in_subfolder)
 			else:
 				var file_name_to_load : String
-				#var file_name_key : String
-				if extension == file_name.get_extension():
-					file_name_to_load = (dir.get_current_dir() + "/" + file_name)
-					items.append(load(file_name_to_load))
-					#items[file_name_key] = load(file_name_to_load)
+				var res = ResourceLoader.load(path + file_name)
+				#if extension == file_name.get_extension():
+				#	file_name_to_load = (dir.get_current_dir() + "/" + file_name)
+					#items.append(load(file_name_to_load))
+				items.append(res)
 			file_name = dir.get_next()
 		return items
 		
