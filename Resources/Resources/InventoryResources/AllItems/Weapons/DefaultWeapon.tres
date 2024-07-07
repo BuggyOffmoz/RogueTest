@@ -19,6 +19,7 @@ shield_cooldown = 1.0
 [resource]
 script = ExtResource("2_57icd")
 item_id = "HANDS"
+stackeable = false
 equippable = true
 consumable = false
 accessible = false

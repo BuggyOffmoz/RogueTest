@@ -11,6 +11,9 @@ class_name InventoryItem
 
 @export var item_icon : Texture2D
 
+## Si podra ser estackeado en el inventario
+@export var stackeable := false
+
 ## Siplemente define si es equipable como Arma/Escudo
 @export var equippable := false:
 	set(value):

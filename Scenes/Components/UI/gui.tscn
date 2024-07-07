@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b2l18nrpeldn3"]
+[gd_scene load_steps=16 format=3 uid="uid://b2l18nrpeldn3"]
 
 [ext_resource type="Script" path="res://Scenes/Components/UI/gui.gd" id="1_wfp3q"]
 [ext_resource type="PackedScene" uid="uid://b5rrhnt2x8lwj" path="res://Scenes/Components/Map/map_component.tscn" id="2_fl5ow"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bfe3elaat32ry" path="res://Scenes/Components/GUI/ContainerGui/VisualContainerManager.tscn" id="6_hnoq3"]
 [ext_resource type="PackedScene" uid="uid://biwofbd21tm7x" path="res://Scenes/Components/GUI/ItemOptionsPopUp.tscn" id="7_uj55t"]
 [ext_resource type="Script" path="res://Scenes/Components/UI/AttackIndicator.gd" id="8_t4h4j"]
+[ext_resource type="PackedScene" uid="uid://cqoa35iei6nfb" path="res://Scenes/Components/GUI/ComparativeTab/ComparativeTab.tscn" id="12_ogg1q"]
 
 [sub_resource type="Resource" id="Resource_12smc"]
 script = ExtResource("3_6lrrk")
@@ -185,7 +186,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(1080, 720)
 layout_mode = 2
 
-[node name="ContainerManger" parent="MainContainer/HBoxContainer/CenterScreen/Panel" node_paths=PackedStringArray("player_container", "map_component", "visual_container") instance=ExtResource("3_hclcr")]
+[node name="ContainerManger" parent="MainContainer/HBoxContainer/CenterScreen/Panel" node_paths=PackedStringArray("player_container", "map_component", "visual_container", "action_manager", "comparative_tab") instance=ExtResource("3_hclcr")]
 unique_name_in_owner = true
 process_mode = 3
 visible = false
@@ -194,6 +195,8 @@ layout_mode = 1
 player_container = NodePath("Vertically/MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#ContainerSlotSystem")
 map_component = NodePath("../../../Map/Panel/SubViewportContainer/SubViewport/MapComponent")
 visual_container = NodePath("../VisualContainerManager")
+action_manager = NodePath("../../../../../PlayerController/ActionsManager")
+comparative_tab = NodePath("../../../../ComparativeTab")
 
 [node name="MainContainer_HBoxContainer_CenterScreen_Panel_ContainerManger_VBoxContainer#VSeparator2" type="VSeparator" parent="MainContainer/HBoxContainer/CenterScreen/Panel/ContainerManger/Vertically" index="0"]
 custom_minimum_size = Vector2(0, 25)
@@ -362,10 +365,16 @@ process_mode = 3
 visible = false
 z_index = 3
 layout_mode = 0
-offset_left = 1007.0
-offset_top = 378.0
-offset_right = 1175.0
-offset_bottom = 611.0
+offset_left = 159.0
+offset_top = 14.0
+offset_right = 327.0
+offset_bottom = 247.0
+
+[node name="ComparativeTab" parent="MainContainer" instance=ExtResource("12_ogg1q")]
+z_index = 3
+z_as_relative = false
+offset_left = -1.0
+offset_right = 154.0
 
 [node name="GameOverScreen" type="Control" parent="."]
 unique_name_in_owner = true

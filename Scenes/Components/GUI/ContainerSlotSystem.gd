@@ -33,7 +33,7 @@ func try_add_item(_item:InventoryItem,_amount:int):
 			if item.internal_item.item_id == _item.item_id:
 				
 				# si lo es, pero no es consumible (es decir, no se puede stackear) se creara una nueva ranura
-				if not item.internal_item.consumable:
+				if not item.internal_item.consumable or not item.internal_item.stackeable:
 					create_new_slot(_item,_amount)
 					return
 				

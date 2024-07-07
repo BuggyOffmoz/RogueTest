@@ -52,7 +52,6 @@ func verify_input():
 		if button.is_hovered():
 			return(false)
 	
-	print("AAAAAAAA")
 	return(true)
 	
 
@@ -61,6 +60,8 @@ func _on_equip_pressed():
 	if container.action_manager != null:
 		var action_manager = container.action_manager
 		action_manager.equipe_item(item_selection.internal_item)
+		item_selection.equipped = true
+		item_selection.actualize_status_gui()
 
 func _on_consume_pressed():
 	if container.action_manager != null:
