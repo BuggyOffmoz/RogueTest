@@ -16,7 +16,8 @@ enchanted_value = 0
 script = ExtResource("2_ttun3")
 item_id = "BREAD"
 item_icon = ExtResource("1_cvko6")
-stackeable = null
+
+stackeable = true
 equippable = false
 consumable = true
 accessible = true

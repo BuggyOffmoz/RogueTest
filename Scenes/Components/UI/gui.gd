@@ -13,7 +13,7 @@ const ENEMY = preload("res://Scenes/Entities/Enemies/enemy_base.tscn")
 
 func _ready():
 	GameState.connect("ChangeState", state_changed)
-	GameState.connect("StartCombat", start_combat)
+	#GameState.connect("StartCombat", start_combat)
 	GameState.connect("PlayerDead", game_over)
 	
 func start_combat(enemies : Array[EnemyData]):
@@ -23,6 +23,13 @@ func create_enemy(enemies : Array[EnemyData]):
 	var enemy = ENEMY.instantiate()
 	enemy.enemy_data = enemies[0] ### Solo por ahora es un solo enemigo
 	enemy_screen.add_child(enemy)
+	
+func get_enemies() -> Array[EnemyBase]:
+	var enemies : Array[EnemyBase] = []
+	for i in enemy_screen.get_children():
+		if i is EnemyBase:
+			enemies.append(i)
+	return enemies
 	
 func state_changed(state : int):
 	match state:
