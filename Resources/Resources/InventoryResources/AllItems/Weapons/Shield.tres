@@ -21,6 +21,7 @@ shield_cooldown = 1.0
 script = ExtResource("2_8p3mv")
 item_id = "SHIELD"
 item_icon = ExtResource("2_pnr5d")
+
 stackeable = false
 equippable = true
 consumable = false

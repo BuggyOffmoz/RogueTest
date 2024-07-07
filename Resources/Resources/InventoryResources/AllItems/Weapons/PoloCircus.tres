@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=5 format=3 uid="uid://b7yqru5wgj25o"]
+
+[ext_resource type="Script" path="res://Resources/Resources/InventoryResources/INV_Item.gd" id="1_e22ik"]
+[ext_resource type="Script" path="res://Resources/Resources/InventoryResources/ItemTypeResources/EquippableObject.gd" id="1_y1omg"]
+[ext_resource type="Texture2D" uid="uid://bvbdfobad7etp" path="res://Assets/2D/Textures/GUI/InventoryItems/circus_polo.png" id="2_6264e"]
+
+[sub_resource type="Resource" id="Resource_5kytq"]
+script = ExtResource("1_y1omg")
+item_type = 0
+item_weight = 0
+item_condition = 100
+base_damage = 20.0
+base_critical_chance = 0
+energy_time = 0.6
+critical_damage = Vector2(0, 0)
+shield_amount = 0
+shield_time = 0.3
+shield_cooldown = 1.0
+
+[resource]
+script = ExtResource("1_e22ik")
+item_id = "POLO_CIRCUS"
+item_icon = ExtResource("2_6264e")
+stackeable = false
+equippable = true
+consumable = false
+accessible = true
+e_item_type = SubResource("Resource_5kytq")

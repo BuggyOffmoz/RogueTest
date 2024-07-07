@@ -9,5 +9,5 @@ item_id = "COINS"
 item_icon = ExtResource("1_j6ox5")
 stackeable = true
 equippable = false
-consumable = false
-accessible = true
+consumable = true
+accessible = false

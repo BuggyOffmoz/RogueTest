@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=5 format=3 uid="uid://21u5c8eiylae"]
+
+[ext_resource type="Script" path="res://Resources/Resources/InventoryResources/INV_Item.gd" id="1_g0lf8"]
+[ext_resource type="Script" path="res://Resources/Resources/InventoryResources/ItemTypeResources/EquippableObject.gd" id="1_l5qqf"]
+[ext_resource type="Texture2D" uid="uid://cuofpne0v07da" path="res://Assets/2D/Textures/GUI/InventoryItems/circus_board_shield.png" id="2_iceha"]
+
+[sub_resource type="Resource" id="Resource_avnfw"]
+script = ExtResource("1_l5qqf")
+item_type = 1
+item_weight = 0
+item_condition = 100
+base_damage = 0.0
+base_critical_chance = 0
+energy_time = 0.5
+critical_damage = Vector2(0, 0)
+shield_amount = 35
+shield_time = 0.4
+shield_cooldown = 0.7
+
+[resource]
+script = ExtResource("1_g0lf8")
+item_id = "CIRCUS_BOARD_SHIELD"
+item_icon = ExtResource("2_iceha")
+stackeable = false
+equippable = true
+consumable = false
+accessible = false
+e_item_type = SubResource("Resource_avnfw")
