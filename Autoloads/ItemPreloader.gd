@@ -33,10 +33,7 @@ func files_load(path : String, extension : String):
 				items.append_array(res_in_subfolder)
 			else:
 				var file_name_to_load : String
-				var res = ResourceLoader.load(path + file_name)
-				#if extension == file_name.get_extension():
-				#	file_name_to_load = (dir.get_current_dir() + "/" + file_name)
-					#items.append(load(file_name_to_load))
+				var res = ResourceLoader.load((path + file_name).replace("." + 'remap', ""))
 				items.append(res)
 			file_name = dir.get_next()
 		return items
