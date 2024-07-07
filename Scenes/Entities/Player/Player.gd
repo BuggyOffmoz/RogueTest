@@ -56,19 +56,6 @@ func visual_container_notificate():
 		map_component.visual_container.verify_items_in_cell()
 ###
 
-func cell_interactions(cell_type : String):
-	## Interaction ##
-	if cell_type == 'exit':
-		OnExitLevel.emit()
-	elif cell_type == 'enemy':
-		#GameState.change_state(GameState.COMBAT)
-		GameState.start_combat(get_enemies_in_cell())
-		
-func get_enemies_in_cell() -> Array[EnemyData]:
-	var enemies = map_component.level_data.enemies_in_scene ### En un futuro hay que crear una función que eliga una cantidad a leatoria de enemigos.
-	return enemies
-
-
 func get_cell_type(cell_pos : Vector2i) -> String:
 	var cell_atlas_coord = map_component.tile_map.get_cell_atlas_coords(0, cell_pos)
 	if cell_atlas_coord == Vector2i(-1,-1):
